@@ -47,11 +47,12 @@ export interface UserSocialNetworksModel {
 
 export interface UserModel {
   id: number
-  username: string
+  username?: string
   password: string | undefined
   email: string
-
   first_name: string
+  avatarColor: string
+  authId: string
   last_name: string
   fullname?: string
   profilePicture?: string

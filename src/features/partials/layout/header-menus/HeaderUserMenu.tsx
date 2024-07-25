@@ -15,7 +15,7 @@ const HeaderUserMenu: FC = () => {
           <div className="symbol symbol-50px me-5">
             <img
               alt="Profile Image"
-              src={`${currentUser?.profilePicture}`}
+              src={`https://images.unsplash.com/photo-1721908919515-fbda004d6548?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
               className="rounded-circle"
               style={{ width: "40px", height: "40px", objectFit: "cover" }}
             />
@@ -23,7 +23,8 @@ const HeaderUserMenu: FC = () => {
 
           <div className="d-flex flex-column">
             <div className="fw-bolder d-flex align-items-center fs-5">
-              {currentUser?.first_name}
+              {currentUser?.username}
+              flower
               <span className="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">
                 Verificado
               </span>
@@ -82,43 +83,6 @@ const HeaderUserMenu: FC = () => {
         
         </div>
       </div>
-
-      <div
-        className='menu-item px-5'
-        data-kt-menu-trigger='hover'
-        data-kt-menu-placement='left-start'
-        data-kt-menu-flip='bottom'
-      >
-        <a  className='menu-link px-5'>
-          <span className='menu-title'>Ayuda y soporte tecnico</span>
-          <span className='menu-arrow'></span>
-        </a>
-
-        <div className='menu-sub menu-sub-dropdown w-175px py-4'>
-          <div className='menu-item px-3'>
-            <a  className='menu-link px-5'>
-             Serivicio de ayuda
-            </a>
-          </div>
-
-  
-
-          <div className='menu-item px-3'>
-            <a  className='menu-link px-5'>
-             Buson de ayuda
-            </a>
-          </div>
-
-          <div className='menu-item px-3'>
-            <a  className='menu-link px-5'>
-            Reportar un problema
-            </a>
-          </div>
-
-        
-        </div>
-      </div>
-
 
       <div className="separator my-2"></div>
 

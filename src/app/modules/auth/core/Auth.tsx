@@ -102,6 +102,8 @@ const AuthInit: FC<WithChildren> = ({children}) => {
 
   useEffect(() => {
     console.log('AuthInit useEffect called with auth:', auth);
+    console.log('AuthInit useEffect called with currentUser:', currentUser);
+    console.log('AuthInit useEffect called with auth:', auth?.token);
     const requestUser = async (apiToken: string) => {
       try {
         if (!currentUser) {

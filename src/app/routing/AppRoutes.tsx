@@ -10,6 +10,8 @@ const { BASE_URL } = import.meta.env
 
 const AppRoutes: FC = () => {
   const { currentUser } = useAuth()
+  const userRedirectPath = currentUser ? `/${currentUser.username}` : '/landing'
+
 
   return (
     <BrowserRouter basename={BASE_URL}>
@@ -22,7 +24,9 @@ const AppRoutes: FC = () => {
           {currentUser ? (
             <>
               <Route path='/*' element={<PrivateRoutes />} />
-              <Route index element={<Navigate to='/dashboard' />} />
+              <Route index element={<Navigate to={userRedirectPath} />} />
+
+              {/* <Route index element={<Navigate to='/dashboard' />} /> */}
             </>
           ) : (
             <>
