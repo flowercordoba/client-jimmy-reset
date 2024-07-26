@@ -7,7 +7,7 @@ import {
   ThemeModeSwitcher,
 } from "../../../partials";
 import { useLayout } from "../../core";
-import { useAuth } from "../../../../app/modules/auth";
+// import { useAuth } from "../../../../app/modules/auth";
 
 const itemClass = "ms-1 ms-md-4";
 const btnClass =
@@ -17,7 +17,7 @@ const btnIconClass = "fs-2";
 
 const Navbar = () => {
   const { config } = useLayout();
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
 
   return (
     <div className="app-navbar flex-shrink-0">
@@ -69,7 +69,9 @@ const Navbar = () => {
           {/* <img src={toAbsoluteUrl('media/avatars/300-3.jpg')} alt='' /> */}
           <img
       alt="Profile Image"
-      src={`${currentUser?.user.profilePicture}`}
+      // src={`${currentUser?.user.profilePicture}`}
+      src={`${'https://images.unsplash.com/photo-1721804978753-6533263d89f5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}`}
+
       className="rounded-circle"
       style={{ width: '40px', height: '40px', objectFit: 'cover' }} // Asegura que la imagen sea cuadrada
     />       

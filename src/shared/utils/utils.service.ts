@@ -1,235 +1,161 @@
-// import { Dispatch } from '@reduxjs/toolkit';
-// import axios, { AxiosResponse } from 'axios';
-// import countries, { LocalizedCountryNames } from 'i18n-iso-countries';
-// import enLocale from 'i18n-iso-countries/langs/en.json';
-// import { filter } from 'lodash';
-// import millify from 'millify';
-// import { NavigateFunction } from 'react-router-dom';
-// import { toast } from 'react-toastify';
-// import { logout } from 'src/features/auth/reducers/logout.reducer';
-// import { authApi } from 'src/features/auth/services/auth.service';
-// import { IOrderDocument } from 'src/features/order/interfaces/order.interface';
-// import { api } from 'src/store/api';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { floor, random, some, findIndex, List } from 'lodash';
+import millify from 'millify';
+import { clearNotification, addNotification } from '../reducers/notifications/notification.reducer';
+import { addUser, clearUser } from '../reducers/user/user.reducer';
+import { avatarColors } from './static.data';
+import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
+import { APP_ENVIRONMENT } from '../services/axios';
 
-// countries.registerLocale(enLocale);
+export class Utils {
+  static avatarColor() {
+    return avatarColors[floor(random(0.9) * avatarColors.length)];
+  }
 
-// export const lowerCase = (str: string): string => {
-//   return str.toLowerCase();
-// };
+  static generateAvatar(text: string, backgroundColor: string | CanvasGradient | CanvasPattern, foregroundColor = 'white') {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
 
-// export const firstLetterUppercase = (str: string): string => {
-//   const valueString = lowerCase(`${str}`);
-//   return `${valueString.charAt(0).toUpperCase()}${valueString.slice(1).toLowerCase()}`;
-// };
+    canvas.width = 200;
+    canvas.height = 200;
 
-// export const replaceSpacesWithDash = (title: string): string => {
-//   const lowercaseTitle: string = lowerCase(`${title}`);
-//   return lowercaseTitle.replace(/\/| /g, '-'); // replace / and space with -
-// };
+    context.fillStyle = backgroundColor;
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
-// export const replaceDashWithSpaces = (title: string): string => {
-//   const lowercaseTitle: string = lowerCase(`${title}`);
-//   return lowercaseTitle.replace(/-|\/| /g, ' '); // replace - / and space with -
-// };
+    // Draw text
+    context.font = 'normal 80px sans-serif';
+    context.fillStyle = foregroundColor;
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillText(text, canvas.width / 2, canvas.height / 2);
 
-// export const replaceAmpersandWithSpace = (title: string): string => {
-//   return title.replace(/&/g, '');
-// };
+    return canvas.toDataURL('image/png');
+  }
 
-// export const replaceAmpersandAndDashWithSpace = (title: string): string => {
-//   const titleWithoutDash = replaceDashWithSpaces(title);
-//   return titleWithoutDash.replace(/&| /g, ' ');
-// };
+  static dispatchUser(result: { data: { token: any; user: any; }; }, pageReload: (arg0: boolean) => void, dispatch: (arg0: { payload: any; type: "user/addUser"; }) => void, setUser: (arg0: any) => void) {
+    pageReload(true);
+    dispatch(addUser({ token: result.data.token, profile: result.data.user }));
+    setUser(result.data.user);
+  }
 
-// export const categories = (): string[] => {
-//   return [
-//     'Graphics & Design',
-//     'Digital Marketing',
-//     'Writing & Translation',
-//     'Video & Animation',
-//     'Music & Audio',
-//     'Programming & Tech',
-//     'Photography',
-//     'Data',
-//     'Business'
-//   ];
-// };
+  static clearStore({ dispatch, deleteStorageUsername, deleteSessionPageReload, setLoggedIn }) {
+    dispatch(clearUser());
+    dispatch(clearNotification());
+    deleteStorageUsername();
+    deleteSessionPageReload();
+    setLoggedIn(false);
+  }
 
-// export const expectedGigDelivery = (): string[] => {
-//   return [
-//     '1 Day Delivery',
-//     '2 Days Delivery',
-//     '3 Days Delivery',
-//     '4 Days Delivery',
-//     '5 Days Delivery',
-//     '6 Days Delivery',
-//     '7 Days Delivery',
-//     '10 Days Delivery',
-//     '14 Days Delivery',
-//     '21 Days Delivery',
-//     '30 Days Delivery',
-//     '45 Days Delivery',
-//     '60 Days Delivery',
-//     '75 Days Delivery',
-//     '90 Days Delivery'
-//   ];
-// };
+  static dispatchNotification(message: any, type: string, dispatch: ThunkDispatch<unknown, unknown, AnyAction>) {
+    dispatch(addNotification({ message, type }));
+  }
 
-// export const countriesList = (): string[] => {
-//   const countriesObj: LocalizedCountryNames<{ select: 'official' }> = countries.getNames('en', { select: 'official' });
-//   return Object.values(countriesObj);
-// };
+  static dispatchClearNotification(dispatch: (arg0: { payload: undefined; type: "notifications/clearNotification"; }) => void) {
+    dispatch(clearNotification());
+  }
 
-// export const saveToSessionStorage = (data: string, username: string): void => {
-//   window.sessionStorage.setItem('isLoggedIn', data);
-//   window.sessionStorage.setItem('loggedInuser', username);
-// };
+  static appEnvironment() {
+    if (APP_ENVIRONMENT === 'local') {
+      return 'LOCAL';
+    } else if (APP_ENVIRONMENT === 'development') {
+      return 'DEV';
+    } else if (APP_ENVIRONMENT === 'staging') {
+      return 'STG';
+    }
+  }
 
-// export const getDataFromSessionStorage = (key: string) => {
-//   const data = window.sessionStorage.getItem(key) as string;
-//   return JSON.parse(data);
-// };
+  static mapSettingsDropdownItems(setSettings: (arg0: { topText: string; subText: string; }[]) => void) {
+    const items = [];
+    const item = {
+      topText: 'My Profile',
+      subText: 'View personal profile.'
+    };
+    items.push(item);
+    setSettings(items);
+    return items;
+  }
 
-// export const saveToLocalStorage = (key: string, data: string): void => {
-//   window.localStorage.setItem(key, data);
-// };
+  static appImageUrl(version: string, id: string) {
+    if (typeof version === 'string' && typeof id === 'string') {
+      version = version.replace(/['"]+/g, '');
+      id = id.replace(/['"]+/g, '');
+    }
+    return `https://res.cloudinary.com/dzqpacupf/image/upload/v${version}/${id}`;
+  }
 
-// export const getDataFromLocalStorage = (key: string) => {
-//   const data = window.localStorage.getItem(key) as string;
-//   return JSON.parse(data);
-// };
+  static generateString(length: number) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = ' ';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
 
-// export const deleteFromLocalStorage = (key: string): void => {
-//   window.localStorage.removeItem(key);
-// };
+  static checkIfUserIsBlocked(blocked: any, userId: any) {
+    return some(blocked, (id) => id === userId);
+  }
 
-// export const applicationLogout = (dispatch: Dispatch, navigate: NavigateFunction) => {
-//   const loggedInUsername: string = getDataFromSessionStorage('loggedInuser');
-//   dispatch(logout({}));
-//   if (loggedInUsername) {
-//     dispatch(authApi.endpoints.removeLoggedInUser.initiate(`${loggedInUsername}`, { track: false }) as never);
-//   }
-//   dispatch(api.util.resetApiState());
-//   dispatch(authApi.endpoints.logout.initiate() as never);
-//   saveToSessionStorage(JSON.stringify(false), JSON.stringify(''));
-//   deleteFromLocalStorage('becomeASeller');
-//   navigate('/');
-// };
+  static checkIfUserIsFollowed(userFollowers: any, postCreatorId: any, userId: any) {
+    return some(userFollowers, (user) => user._id === postCreatorId || postCreatorId === userId);
+  }
 
-// export const isFetchBaseQueryError = (error: unknown): boolean => {
-//   return typeof error === 'object' && error !== null && 'status' in error && 'data' in error;
-// };
+  static checkIfUserIsOnline(username: string, onlineUsers: any) {
+    return some(onlineUsers, (user) => user === username?.toLowerCase());
+  }
 
-// export const orderTypes = (status: string, orders: IOrderDocument[]): number => {
-//   const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
-//   return orderList.length;
-// };
+  static firstLetterUpperCase(word: string) {
+    if (!word) return '';
+    return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
+  }
 
-// export const sellerOrderList = (status: string, orders: IOrderDocument[]): IOrderDocument[] => {
-//   const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
-//   return orderList;
-// };
+  static formattedReactions(reactions: ArrayLike<unknown> | { [s: string]: unknown; }) {
+    const postReactions = [];
+    for (const [key, value] of Object.entries(reactions)) {
+      if (value > 0) {
+        const reactionObject = {
+          type: key,
+          value
+        };
+        postReactions.push(reactionObject);
+      }
+    }
+    return postReactions;
+  }
 
-// export const degreeList = (): string[] => {
-//   return ['Associate', 'B.A.', 'B.Sc.', 'M.A.', 'M.B.A.', 'M.Sc.', 'J.D.', 'M.D.', 'Ph.D.', 'LLB', 'Certificate', 'Other'];
-// };
+  static shortenLargeNumbers(data: number | undefined) {
+    if (data === undefined) {
+      return 0;
+    } else {
+      return millify(data);
+    }
+  }
 
-// export const languageLevel = (): string[] => {
-//   return ['Basic', 'Conversational', 'Fluent', 'Native'];
-// };
+  static getImage(imageId: any, imageVersion: any) {
+    return imageId && imageVersion ? this.appImageUrl(imageVersion, imageId) : '';
+  }
 
-// export const yearsList = (maxOffset: number): string[] => {
-//   const years: string[] = [];
-//   const currentYear: number = new Date().getFullYear();
-//   for (let i = 0; i <= maxOffset; i++) {
-//     const year: number = currentYear - i;
-//     years.push(`${year}`);
-//   }
-//   return years;
-// };
+  static getVideo(videoId: any, videoVersion: any) {
+    return videoId && videoVersion
+      ? `https://res.cloudinary.com/dzqpacupf/video/upload/v${videoVersion}/${videoId}`
+      : '';
+  }
 
-// export const shortenLargeNumbers = (data: number | undefined): string => {
-//   if (data === undefined) {
-//     return '0';
-//   }
-//   return millify(data, { precision: 0 });
-// };
+  static removeUserFromList(list: any[] | List<unknown> | null | undefined, userId: unknown) {
+    const index = findIndex(list, (id) => id === userId);
+    list.splice(index, 1);
+    return list;
+  }
 
-// export const rating = (num: number): number => {
-//   if (num) {
-//     return Math.round(num * 10) / 10;
-//   }
-//   return 0.0;
-// };
+  static checkUrl(url: string | any[], word: any) {
+    return url.includes(word);
+  }
 
-// export const showSuccessToast = (message: string): void => {
-//   toast.success(message, {
-//     position: 'bottom-right',
-//     autoClose: 3000,
-//     hideProgressBar: false,
-//     closeOnClick: true,
-//     pauseOnHover: false,
-//     draggable: false,
-//     progress: undefined,
-//     theme: 'colored'
-//   });
-// };
-
-// export const showErrorToast = (message: string): void => {
-//   toast.error(message, {
-//     position: 'bottom-right',
-//     autoClose: 3000,
-//     hideProgressBar: false,
-//     closeOnClick: true,
-//     pauseOnHover: false,
-//     draggable: false,
-//     progress: undefined,
-//     theme: 'colored'
-//   });
-// };
-
-// export const reactQuillUtils = () => {
-//   const modules = {
-//     toolbar: [
-//       ['bold', 'italic'],
-//       [{ list: 'ordered' }, { list: 'bullet' }]
-//     ]
-//   };
-//   const formats: string[] = ['bold', 'italic', 'list', 'bullet'];
-//   return { modules, formats };
-// };
-
-// export const generateRandomNumber = (length: number): number => {
-//   return Math.floor(Math.random() * (9 * Math.pow(10, length - 1))) + Math.pow(10, length - 1);
-// };
-
-// export const bytesToSize = (bytes: number): string => {
-//   const sizes: string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-//   if (bytes === 0) {
-//     return 'n/a';
-//   }
-//   const i = parseInt(`${Math.floor(Math.log(bytes) / Math.log(1024))}`, 10);
-//   if (i === 0) {
-//     return `${bytes} ${sizes[i]}`;
-//   }
-//   return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`;
-// };
-
-// export const getFileBlob = async (url: string): Promise<AxiosResponse> => {
-//   const response: AxiosResponse = await axios.get(url, { responseType: 'blob' });
-//   return response;
-// };
-
-// export const downloadFile = (blobUrl: string, fileName: string): void => {
-//   const link: HTMLAnchorElement = document.createElement('a');
-//   link.href = blobUrl;
-//   link.setAttribute('download', `${fileName}`);
-//   // Append to html link element page
-//   document.body.appendChild(link);
-//   // Start download
-//   link.click();
-//   // Clean up and remove link
-//   if (link.parentNode) {
-//     link.parentNode.removeChild(link);
-//   }
-// };
+  static renameFile(element: { name: string; slice: (arg0: number, arg1: any, arg2: string) => any; size: any; }) {
+    const fileName = element.name.split('.').slice(0, -1).join('.');
+    const blob = element.slice(0, element.size, '/image/png');
+    const newFile = new File([blob], `${fileName}.png`, { type: '/image/png' });
+    return newFile;
+  }
+}
