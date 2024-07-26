@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { getUserImages, uploadProfileImage } from '../../../../../shared/services/images.service';
+import { useAuth } from '../../../auth';
+import { readAsBase64 } from '../../../../../shared/utils/image-utils.service';
 
-const ProfileImage: React.FC<{ userId: string }> = ({ userId }) => {
+const ProfileImage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [userImages, setUserImages] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const { currentUser, refreshUser } = useAuth();
 
   const handleClose = () => {
     setShowModal(false);
@@ -18,7 +21,7 @@ const ProfileImage: React.FC<{ userId: string }> = ({ userId }) => {
   useEffect(() => {
     const fetchUserImages = async () => {
       try {
-        const images = await getUserImages(userId);
+        const images = await getUserImages(currentUser?.user._id || '');
         setUserImages(images);
       } catch (error) {
         console.error('Error al obtener las imágenes del usuario:', error);
@@ -26,7 +29,7 @@ const ProfileImage: React.FC<{ userId: string }> = ({ userId }) => {
     };
 
     fetchUserImages();
-  }, [userId]);
+  }, [currentUser?.user._id]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -43,8 +46,9 @@ const ProfileImage: React.FC<{ userId: string }> = ({ userId }) => {
   const handleUpload = async () => {
     if (selectedFile) {
       try {
-        const response = await uploadProfileImage(selectedFile);
-        console.log('Imagen subida:', response);
+        const image = await readAsBase64(selectedFile)
+        await uploadProfileImage(image);
+        refreshUser(currentUser?.token || '')
         handleClose();
       } catch (error) {
         console.error('Error al subir la imagen:', error);
@@ -70,7 +74,7 @@ const ProfileImage: React.FC<{ userId: string }> = ({ userId }) => {
         onClick={handleShow}
       >
         <img
-          src="https://images.unsplash.com/photo-1721332149274-586f2604884d?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={currentUser?.user.profilePicture}
           className="img-fluid"
           style={{
             width: "100%",
