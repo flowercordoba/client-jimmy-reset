@@ -3,14 +3,8 @@ import axios from 'axios';
 const API_URL = 'http://localhost:5000'; // Cambia esto por la URL de tu API
 
 // Subir una nueva imagen de perfil
-export const uploadProfileImage = async (imageFile: File) => {
-  const formData = new FormData();
-  formData.append('image', imageFile);
-
-  const response = await axios.post(`${API_URL}/images/profile`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
+export const uploadProfileImage = async (image: string | ArrayBuffer | null) => {
+  const response = await axios.post(`${API_URL}/images/profile`, { image }, {
     withCredentials: true // Para enviar cookies de autenticación si es necesario
   });
 
@@ -38,5 +32,5 @@ export const getUserImages = async (userId: string) => {
     withCredentials: true // Para enviar cookies de autenticación si es necesario
   });
 
-  return response.data;
+  return response.data.images;
 };
