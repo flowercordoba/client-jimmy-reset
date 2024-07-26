@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000'; // Cambia esto por la URL de tu API
+const API_URL = 'http://yeebam-dev.eba-jubbbszd.us-east-1.elasticbeanstalk.com/api/v1'; // Cambia esto por la URL de tu API
 
 // Subir una nueva imagen de perfil
 export const uploadProfileImage = async (image: string | ArrayBuffer | null) => {
