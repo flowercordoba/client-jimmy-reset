@@ -23,6 +23,7 @@ const initAuthContextPropsState = {
   currentUser: undefined,
   setCurrentUser: () => {},
   logout: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   refreshUser: (token: string) => {},
 }
 console.log('initAuthContextPropsState.auth',initAuthContextPropsState.auth)

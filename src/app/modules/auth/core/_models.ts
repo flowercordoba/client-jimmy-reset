@@ -222,6 +222,7 @@ export interface IUserDocument {
 }
 
 export interface ICurrentUser {
+  username: string
   isUser: boolean
   token: string
   user: IUserDocument

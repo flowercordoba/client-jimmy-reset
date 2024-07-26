@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
-import { ICurrentUser } from "./_models";
+// import { ICurrentUser } from "./_models";
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
@@ -57,11 +57,38 @@ export function requestPassword(email: string) {
 // Obtener usuario por token
 export function getUserByToken(token: string) {
   console.log('getUserByToken', token);
-  return axios.get<ICurrentUser>(GET_USER_BY_ACCESSTOKEN_URL, {
+  return axios.get<any>(GET_USER_BY_ACCESSTOKEN_URL, {
     headers: {
       ...axiosConfig.headers,
       'Authorization': `Bearer ${token}`
     },
     withCredentials: axiosConfig.withCredentials
   });
+
+
+
 }
+
+export function forgotPassword(email: string) {
+  return axios.post<{ result: boolean }>(REQUEST_PASSWORD_URL, {
+    email
+  }, axiosConfig);
+}
+
+
+export function resetPassword(token: string) {
+  return axios.post<{ result: boolean }>(`/reset-password/${token}`, {
+    token
+  }, axiosConfig);
+}
+
+
+// async forgotPassword(email) {
+//   const response = await axios.post('/forgot-password', { email });
+//   return response;
+// }
+
+// async resetPassword(token, body) {
+//   const response = await axios.post(`/reset-password/${token}`, body);
+//   return response;
+// }

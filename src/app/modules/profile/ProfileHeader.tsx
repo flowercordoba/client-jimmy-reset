@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Content } from "../../../features/layout/components/content";
-import { useAuth } from "../auth";
+// import { useAuth } from "../auth";
 import ProfileImage from "./pages/accounts/ProfileImage";
 
 const ProfileHeader: FC = () => {
   const location = useLocation();
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
 
   return (
     <>
