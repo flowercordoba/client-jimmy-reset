@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { getUserImages, uploadProfileImage } from '../../../../../shared/services/images.service';
+import { readAsBase64 } from '../../../../../shared/utils/image-utils.service';
 
 const ProfileImage: React.FC<{ userId: string }> = ({ userId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -43,7 +44,8 @@ const ProfileImage: React.FC<{ userId: string }> = ({ userId }) => {
   const handleUpload = async () => {
     if (selectedFile) {
       try {
-        const response = await uploadProfileImage(selectedFile);
+        const image = await readAsBase64(selectedFile)
+        const response = await uploadProfileImage(image);
         console.log('Imagen subida:', response);
         handleClose();
       } catch (error) {
