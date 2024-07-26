@@ -45,9 +45,9 @@ export function Login() {
       <div className="card shadow-lg" style={{ maxWidth: '900px', width: '100%' }}>
         <div className="">
           <div className="col-md-6 col-12">
-            <div className="card-body p-10 p-md-5">
+            <div className="card-body p-10 ">
              
-              <h3 className="card-subtitle text-left mb-4" style={{ fontSize: '2.3em' }}>
+              <h3 className="card-subtitle text-left " style={{ fontSize: '2.3em' }}>
                 <b>¡Bienvenido!</b>
               </h3>
          

@@ -63,7 +63,7 @@ const Languages: FC = () => {
               <span className='symbol symbol-20px me-4'>
                 <img className='rounded-1' src={l.flag} alt='metronic' />
               </span>
-              {l.name}
+              
             </a>
           </div>
         ))}
