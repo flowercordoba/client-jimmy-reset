@@ -77,10 +77,10 @@ export class PostUtils {
         setApiResponse('success');
         setLoading(false);
       }
-    } catch (error) {
-      PostUtils.dispatchNotification(error.response.data.message, 'error', setApiResponse, setLoading, dispatch);
+    } catch (error: any) {
+      PostUtils.dispatchNotification(error.response?.data?.message || 'An error occurred', 'error', setApiResponse, setLoading, dispatch);
     }
-  }
+}
 
   static async sendUpdatePostWithFileRequest(type: string, postId: any, postData: any, setApiResponse: (arg0: string) => void, setLoading: (arg0: boolean) => void, dispatch: any) {
     try {
@@ -121,16 +121,16 @@ export class PostUtils {
     return isPrivate || isPublic || isFollower;
   }
 
-  static positionCursor(elementId: string) {
-    const element = document.getElementById(`${elementId}`);
-    const selection = window.getSelection();
-    const range = document.createRange();
-    selection.removeAllRanges();
-    range.selectNodeContents(element);
-    range.collapse(false);
-    selection.addRange(range);
-    element.focus();
-  }
+  // static positionCursor(elementId: string) {
+  //   const element = document.getElementById(`${elementId}`);
+  //   const selection = window.getSelection();
+  //   const range = document.createRange();
+  //   selection.removeAllRanges();
+  //   range.selectNodeContents(element);
+  //   range.collapse(false);
+  //   selection.addRange(range);
+  //   element.focus();
+  // }
 
   static socketIOPost(posts: any[] | List<unknown> | null | undefined, setPosts: (arg0: any) => void) {
     posts = cloneDeep(posts);

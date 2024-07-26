@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import blessed from '@assets/feelings/blessed.jpg';
 import excited from '@assets/feelings/excited.jpg';
 import happyFeelings from '@assets/feelings/happy.jpg';
@@ -8,23 +9,7 @@ import like from '@assets/reactions/like.png';
 import love from '@assets/reactions/love.png';
 import sad from '@assets/reactions/sad.png';
 import wow from '@assets/reactions/wow.png';
-import {
-  FaBirthdayCake,
-  FaComments,
-  FaGlobe,
-  FaHeart,
-  FaImages,
-  FaKey,
-  FaLock,
-  FaNewspaper,
-  FaRegBell,
-  FaRegUser,
-  FaUser,
-  FaUserCheck,
-  FaUserPlus,
-  FaUsers,
-  FaVideo
-} from 'react-icons/fa';
+
 
 export const sideBarItems = [
   {
@@ -106,36 +91,8 @@ export const feelingsList = [
   }
 ];
 
-export const fontAwesomeIcons = {
-  FaNewspaper: <FaNewspaper className="icon" />,
-  FaComments: <FaComments className="icon" />,
-  FaUsers: <FaUsers className="icon" />,
-  FaUserPlus: <FaUserPlus className="icon" />,
-  FaHeart: <FaHeart className="icon" />,
-  FaImages: <FaImages className="icon" />,
-  FaVideo: <FaVideo className="icon" />,
-  FaRegBell: <FaRegBell className="icon" />,
-  FaBirthdayCake: <FaBirthdayCake className="icon" />,
-  FaRegUser: <FaRegUser className="icon" />
-};
 
-export const privacyList = [
-  {
-    topText: 'Public',
-    subText: 'Anyone on Chatty',
-    icon: <FaGlobe className="globe-icon globe" />
-  },
-  {
-    topText: 'Followers',
-    subText: 'Your followers on Chatty',
-    icon: <FaUserCheck className="globe-icon globe" />
-  },
-  {
-    topText: 'Private',
-    subText: 'For you only',
-    icon: <FaLock className="globe-icon globe" />
-  }
-];
+
 
 export const bgColors = [
   '#ffffff',
@@ -250,21 +207,3 @@ export const notificationItems = [
   }
 ];
 
-export const tabItems = (showPassword, showNotification) => {
-  const items = [
-    { key: 'Timeline', show: true, icon: <FaUser className="banner-nav-item-name-icon" /> },
-    { key: 'Followers', show: true, icon: <FaHeart className="banner-nav-item-name-icon" /> },
-    { key: 'Gallery', show: true, icon: <FaImages className="banner-nav-item-name-icon" /> },
-    {
-      key: 'Change Password',
-      show: showPassword,
-      icon: <FaKey className="banner-nav-item-name-icon" />
-    },
-    {
-      key: 'Notifications',
-      show: showNotification,
-      icon: <FaRegBell className="banner-nav-item-name-icon" />
-    }
-  ];
-  return items;
-};
