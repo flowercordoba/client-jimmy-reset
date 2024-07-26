@@ -1,10 +1,10 @@
 import { FC, useState, useEffect } from "react";
-import { Content } from "../../../_metronic/layout/components/content";
+import { Content } from "../../../../../features/layout/components/content";
 import { ItemsNavegation } from "./ItemsNavegation";
 import ProfileImage from "./ProfileImage";
 import AboutMe from "./AboutMe";
 import { Modal, Button } from 'react-bootstrap';
-import { getUserImages, uploadCoverImage } from "../../../shared/services/images.service";
+import { getUserImages, uploadCoverImage } from "../../../../../shared/services/images.service";
 
 const AccountHeader: FC<{ userId: string }> = ({ userId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -95,7 +95,7 @@ const AccountHeader: FC<{ userId: string }> = ({ userId }) => {
             <div className="d-flex flex-wrap flex-sm-nowrap mb-3">
               {/* Imagen de Perfil */}
               <div className="me-7 mb-4" style={{ marginTop: '-80px' }}>
-                <ProfileImage userId={userId} />
+                <ProfileImage />
               </div>
               <AboutMe />
             </div>
