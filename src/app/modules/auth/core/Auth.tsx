@@ -13,6 +13,7 @@ type AuthContextProps = {
   currentUser: ICurrentUser | undefined
   setCurrentUser: Dispatch<SetStateAction<ICurrentUser | undefined>>
   logout: () => void
+  refreshUser: (token: string) => void
 }
 
 const initAuthContextPropsState = {
@@ -22,6 +23,7 @@ const initAuthContextPropsState = {
   currentUser: undefined,
   setCurrentUser: () => {},
   logout: () => {},
+  refreshUser: (token: string) => {},
 }
 console.log('initAuthContextPropsState.auth',initAuthContextPropsState.auth)
 console.log('initAuthContextPropsState.currentUser',initAuthContextPropsState.currentUser)
@@ -53,9 +55,20 @@ const AuthProvider: FC<WithChildren> = ({children}) => {
     saveAuth(undefined)
     setCurrentUser(undefined)
   }
+  const refreshUser = async (token: string) => {
+    try {
+      const { data } = await getUserByToken(token)
+      if (data) {
+        setCurrentUser(data)
+      }
+    } catch (error) {
+      console.error('Error refreshing user:', error)
+      logout()
+    }
+  }
 
   return (
-    <AuthContext.Provider value={{auth, saveAuth, currentUser, setCurrentUser, logout}}>
+    <AuthContext.Provider value={{auth, saveAuth, currentUser, setCurrentUser, logout, refreshUser}}>
       {children}
     </AuthContext.Provider>
   )
