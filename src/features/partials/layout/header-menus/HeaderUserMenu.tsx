@@ -23,14 +23,14 @@ const HeaderUserMenu: FC = () => {
 
           <div className="d-flex flex-column">
             <div className="fw-bolder d-flex align-items-center fs-5">
-              {currentUser?.username}
+              {currentUser?.user.profilePicture}
               flower
               <span className="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">
                 Verificado
               </span>
             </div>
             <a className="fw-bold text-muted text-hover-primary fs-7">
-              {currentUser?.email}
+              {currentUser?.user.email}
             </a>
           </div>
         </div>

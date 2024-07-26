@@ -69,7 +69,7 @@ const Navbar = () => {
           {/* <img src={toAbsoluteUrl('media/avatars/300-3.jpg')} alt='' /> */}
           <img
       alt="Profile Image"
-      src={`${currentUser?.profilePicture}`}
+      src={`${currentUser?.user.profilePicture}`}
       className="rounded-circle"
       style={{ width: '40px', height: '40px', objectFit: 'cover' }} // Asegura que la imagen sea cuadrada
     />       

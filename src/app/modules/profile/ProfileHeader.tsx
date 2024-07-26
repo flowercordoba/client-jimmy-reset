@@ -17,7 +17,7 @@ const ProfileHeader: FC = () => {
                 <div className="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
                   <img
                     alt="Profile Image"
-                    src={`${currentUser?.profilePicture}`}
+                    src={`${currentUser?.user.profilePicture}`}
                     className="rounded-circle"
                     style={{
                       width: "120px",

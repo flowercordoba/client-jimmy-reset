@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
-import { UserModel } from "./_models";
+import { ICurrentUser } from "./_models";
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
@@ -57,7 +57,7 @@ export function requestPassword(email: string) {
 // Obtener usuario por token
 export function getUserByToken(token: string) {
   console.log('getUserByToken', token);
-  return axios.get<UserModel>(GET_USER_BY_ACCESSTOKEN_URL, {
+  return axios.get<ICurrentUser>(GET_USER_BY_ACCESSTOKEN_URL, {
     headers: {
       ...axiosConfig.headers,
       'Authorization': `Bearer ${token}`
