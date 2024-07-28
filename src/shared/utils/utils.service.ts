@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { floor, random, some, findIndex, List } from 'lodash';
 import millify from 'millify';
-import { clearNotification, addNotification } from '../reducers/notifications/notification.reducer';
+// import { clearNotification, addNotification } from '../reducers/notifications/notification.reducer';
 import { addUser, clearUser } from '../reducers/user/user.reducer';
-import { avatarColors } from './static.data';
+// import { avatarColors } from './static.data';
 import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
 import { APP_ENVIRONMENT } from '../services/axios';
 
 export class Utils {
-  static avatarColor() {
-    return avatarColors[floor(random(0.9) * avatarColors.length)];
-  }
+  // static avatarColor() {
+  //   return avatarColors[floor(random(0.9) * avatarColors.length)];
+  // }
 
   static generateAvatar(text: string, backgroundColor: string | CanvasGradient | CanvasPattern, foregroundColor = 'white') {
     const canvas = document.createElement('canvas');
@@ -19,15 +19,15 @@ export class Utils {
     canvas.width = 200;
     canvas.height = 200;
 
-    context.fillStyle = backgroundColor;
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    // context.fillStyle = backgroundColor;
+    // context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw text
-    context.font = 'normal 80px sans-serif';
-    context.fillStyle = foregroundColor;
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillText(text, canvas.width / 2, canvas.height / 2);
+    // // Draw text
+    // context.font = 'normal 80px sans-serif';
+    // context.fillStyle = foregroundColor;
+    // context.textAlign = 'center';
+    // context.textBaseline = 'middle';
+    // context.fillText(text, canvas.width / 2, canvas.height / 2);
 
     return canvas.toDataURL('image/png');
   }
@@ -38,21 +38,21 @@ export class Utils {
     setUser(result.data.user);
   }
 
-  static clearStore({ dispatch, deleteStorageUsername, deleteSessionPageReload, setLoggedIn }) {
-    dispatch(clearUser());
-    dispatch(clearNotification());
-    deleteStorageUsername();
-    deleteSessionPageReload();
-    setLoggedIn(false);
-  }
+  // static clearStore({ dispatch, deleteStorageUsername, deleteSessionPageReload, setLoggedIn }) {
+  //   dispatch(clearUser());
+  //   dispatch(clearNotification());
+  //   deleteStorageUsername();
+  //   deleteSessionPageReload();
+  //   setLoggedIn(false);
+  // }
 
-  static dispatchNotification(message: any, type: string, dispatch: ThunkDispatch<unknown, unknown, AnyAction>) {
-    dispatch(addNotification({ message, type }));
-  }
+  // static dispatchNotification(message: any, type: string, dispatch: ThunkDispatch<unknown, unknown, AnyAction>) {
+  //   dispatch(addNotification({ message, type }));
+  // }
 
-  static dispatchClearNotification(dispatch: (arg0: { payload: undefined; type: "notifications/clearNotification"; }) => void) {
-    dispatch(clearNotification());
-  }
+  // static dispatchClearNotification(dispatch: (arg0: { payload: undefined; type: "notifications/clearNotification"; }) => void) {
+  //   dispatch(clearNotification());
+  // }
 
   static appEnvironment() {
     if (APP_ENVIRONMENT === 'local') {
@@ -110,19 +110,19 @@ export class Utils {
     return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
   }
 
-  static formattedReactions(reactions: ArrayLike<unknown> | { [s: string]: unknown; }) {
-    const postReactions = [];
-    for (const [key, value] of Object.entries(reactions)) {
-      if (value > 0) {
-        const reactionObject = {
-          type: key,
-          value
-        };
-        postReactions.push(reactionObject);
-      }
-    }
-    return postReactions;
-  }
+  // static formattedReactions(reactions: ArrayLike<unknown> | { [s: string]: unknown; }) {
+  //   const postReactions = [];
+  //   for (const [key, value] of Object.entries(reactions)) {
+  //     if (value > 0) {
+  //       const reactionObject = {
+  //         type: key,
+  //         value
+  //       };
+  //       postReactions.push(reactionObject);
+  //     }
+  //   }
+  //   return postReactions;
+  // }
 
   static shortenLargeNumbers(data: number | undefined) {
     if (data === undefined) {
@@ -142,11 +142,11 @@ export class Utils {
       : '';
   }
 
-  static removeUserFromList(list: any[] | List<unknown> | null | undefined, userId: unknown) {
-    const index = findIndex(list, (id) => id === userId);
-    list.splice(index, 1);
-    return list;
-  }
+  // static removeUserFromList(list: any[] | List<unknown> | null | undefined, userId: unknown) {
+  //   const index = findIndex(list, (id) => id === userId);
+  //   list.splice(index, 1);
+  //   return list;
+  // }
 
   static checkUrl(url: string | any[], word: any) {
     return url.includes(word);
