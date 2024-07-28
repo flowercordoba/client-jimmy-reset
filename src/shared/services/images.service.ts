@@ -12,14 +12,8 @@ export const uploadProfileImage = async (image: string | ArrayBuffer | null) => 
 };
 
 // Subir una nueva imagen de portada
-export const uploadCoverImage = async (imageFile: File) => {
-  const formData = new FormData();
-  formData.append('image', imageFile);
-
-  const response = await axios.post(`${API_URL}/images/background`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
+export const uploadCoverImage = async (image: string | ArrayBuffer | null) => {
+  const response = await axios.post(`${API_URL}/images/background`, { image }, {
     withCredentials: true // Para enviar cookies de autenticación si es necesario
   });
 

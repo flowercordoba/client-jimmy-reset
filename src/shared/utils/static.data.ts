@@ -91,8 +91,41 @@ export const feelingsList = [
   }
 ];
 
+<<<<<<< HEAD
 
 
+=======
+export const fontAwesomeIcons = {
+  // FaNewspaper: <FaNewspaper className="icon" />,
+  // FaComments: <FaComments className="icon" />,
+  // FaUsers: <FaUsers className="icon" />,
+  // FaUserPlus: <FaUserPlus className="icon" />,
+  // FaHeart: <FaHeart className="icon" />,
+  // FaImages: <FaImages className="icon" />,
+  // FaVideo: <FaVideo className="icon" />,
+  // FaRegBell: <FaRegBell className="icon" />,
+  // FaBirthdayCake: <FaBirthdayCake className="icon" />,
+  // FaRegUser: <FaRegUser className="icon" />
+};
+
+export const privacyList = [
+  {
+    topText: 'Public',
+    subText: 'Anyone on Chatty',
+    // icon: <FaGlobe className="globe-icon globe" />
+  },
+  {
+    topText: 'Followers',
+    subText: 'Your followers on Chatty',
+    // icon: <FaUserCheck className="globe-icon globe" />
+  },
+  {
+    topText: 'Private',
+    subText: 'For you only',
+    // icon: <FaLock className="globe-icon globe" />
+  }
+];
+>>>>>>> d648346115eecacd38dca853a2fc865bbb484808
 
 export const bgColors = [
   '#ffffff',
@@ -207,3 +240,24 @@ export const notificationItems = [
   }
 ];
 
+<<<<<<< HEAD
+=======
+// const tabItems = (showPassword: boolean, showNotification: boolean) => {
+//   const items = [
+//     { key: 'Timeline', show: true, icon: <FaUser className="banner-nav-item-name-icon" /> },
+//     { key: 'Followers', show: true, icon: <FaHeart className="banner-nav-item-name-icon" /> },
+//     { key: 'Gallery', show: true, icon: <FaImages className="banner-nav-item-name-icon" /> },
+//     {
+//       key: 'Change Password',
+//       show: showPassword,
+//       icon: <FaKey className="banner-nav-item-name-icon" />
+//     },
+//     {
+//       key: 'Notifications',
+//       show: showNotification,
+//       icon: <FaRegBell className="banner-nav-item-name-icon" />
+//     }
+//   ];
+//   return items;
+// };
+>>>>>>> d648346115eecacd38dca853a2fc865bbb484808
