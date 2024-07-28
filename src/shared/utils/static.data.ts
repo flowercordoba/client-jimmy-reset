@@ -1,100 +1,96 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import blessed from '@assets/feelings/blessed.jpg';
-import excited from '@assets/feelings/excited.jpg';
-import happyFeelings from '@assets/feelings/happy.jpg';
-import loved from '@assets/feelings/loved.jpg';
-import angry from '@assets/reactions/angry.png';
-import happy from '@assets/reactions/happy.png';
-import like from '@assets/reactions/like.png';
-import love from '@assets/reactions/love.png';
-import sad from '@assets/reactions/sad.png';
-import wow from '@assets/reactions/wow.png';
+// import blessed from '@assets/feelings/blessed.jpg';
+// import excited from '@assets/feelings/excited.jpg';
+// import happyFeelings from '@assets/feelings/happy.jpg';
+// import loved from '@assets/feelings/loved.jpg';
+// import angry from '@assets/reactions/angry.png';
+// import happy from '@assets/reactions/happy.png';
+// import like from '@assets/reactions/like.png';
+// import love from '@assets/reactions/love.png';
+// import sad from '@assets/reactions/sad.png';
+// import wow from '@assets/reactions/wow.png';
 
 
-export const sideBarItems = [
-  {
-    index: 1,
-    name: 'Streams',
-    url: '/app/social/streams',
-    iconName: 'FaNewspaper'
-  },
-  {
-    index: 2,
-    name: 'Chat',
-    url: '/app/social/chat/messages',
-    iconName: 'FaComments'
-  },
-  {
-    index: 3,
-    name: 'People',
-    url: '/app/social/people',
-    iconName: 'FaUsers'
-  },
-  {
-    index: 4,
-    name: 'Following',
-    url: '/app/social/following',
-    iconName: 'FaUserPlus'
-  },
-  {
-    index: 5,
-    name: 'Followers',
-    url: '/app/social/followers',
-    iconName: 'FaHeart'
-  },
-  {
-    index: 6,
-    name: 'Photos',
-    url: '/app/social/photos',
-    iconName: 'FaImages'
-  },
-  {
-    index: 7,
-    name: 'Videos',
-    url: '/app/social/videos',
-    iconName: 'FaVideo'
-  },
-  {
-    index: 8,
-    name: 'Notifications',
-    url: '/app/social/notifications',
-    iconName: 'FaRegBell'
-  },
-  {
-    index: 9,
-    name: 'Profile',
-    url: '/app/social/profile',
-    iconName: 'FaRegUser'
-  }
-];
+// export const sideBarItems = [
+//   {
+//     index: 1,
+//     name: 'Streams',
+//     url: '/app/social/streams',
+//     iconName: 'FaNewspaper'
+//   },
+//   {
+//     index: 2,
+//     name: 'Chat',
+//     url: '/app/social/chat/messages',
+//     iconName: 'FaComments'
+//   },
+//   {
+//     index: 3,
+//     name: 'People',
+//     url: '/app/social/people',
+//     iconName: 'FaUsers'
+//   },
+//   {
+//     index: 4,
+//     name: 'Following',
+//     url: '/app/social/following',
+//     iconName: 'FaUserPlus'
+//   },
+//   {
+//     index: 5,
+//     name: 'Followers',
+//     url: '/app/social/followers',
+//     iconName: 'FaHeart'
+//   },
+//   {
+//     index: 6,
+//     name: 'Photos',
+//     url: '/app/social/photos',
+//     iconName: 'FaImages'
+//   },
+//   {
+//     index: 7,
+//     name: 'Videos',
+//     url: '/app/social/videos',
+//     iconName: 'FaVideo'
+//   },
+//   {
+//     index: 8,
+//     name: 'Notifications',
+//     url: '/app/social/notifications',
+//     iconName: 'FaRegBell'
+//   },
+//   {
+//     index: 9,
+//     name: 'Profile',
+//     url: '/app/social/profile',
+//     iconName: 'FaRegUser'
+//   }
+// ];
 
-export const feelingsList = [
-  {
-    index: 0,
-    name: 'happy',
-    image: happyFeelings
-  },
-  {
-    index: 1,
-    name: 'excited',
-    image: excited
-  },
-  {
-    index: 2,
-    name: 'blessed',
-    image: blessed
-  },
-  {
-    index: 3,
-    name: 'loved',
-    image: loved
-  }
-];
+// export const feelingsList = [
+//   {
+//     index: 0,
+//     name: 'happy',
+//     image: happyFeelings
+//   },
+//   {
+//     index: 1,
+//     name: 'excited',
+//     image: excited
+//   },
+//   {
+//     index: 2,
+//     name: 'blessed',
+//     image: blessed
+//   },
+//   {
+//     index: 3,
+//     name: 'loved',
+//     image: loved
+//   }
+// ];
 
-<<<<<<< HEAD
-
-
-=======
 export const fontAwesomeIcons = {
   // FaNewspaper: <FaNewspaper className="icon" />,
   // FaComments: <FaComments className="icon" />,
@@ -125,7 +121,7 @@ export const privacyList = [
     // icon: <FaLock className="globe-icon globe" />
   }
 ];
->>>>>>> d648346115eecacd38dca853a2fc865bbb484808
+
 
 export const bgColors = [
   '#ffffff',
@@ -191,14 +187,14 @@ export const emptyPostData = {
   video: ''
 };
 
-export const reactionsMap = {
-  like,
-  love,
-  wow,
-  sad,
-  happy,
-  angry
-};
+// export const reactionsMap = {
+//   like,
+//   love,
+//   wow,
+//   sad,
+//   happy,
+//   angry
+// };
 
 export const reactionsColor = {
   like: '#50b5ff',
@@ -239,25 +235,3 @@ export const notificationItems = [
     type: 'comments'
   }
 ];
-
-<<<<<<< HEAD
-=======
-// const tabItems = (showPassword: boolean, showNotification: boolean) => {
-//   const items = [
-//     { key: 'Timeline', show: true, icon: <FaUser className="banner-nav-item-name-icon" /> },
-//     { key: 'Followers', show: true, icon: <FaHeart className="banner-nav-item-name-icon" /> },
-//     { key: 'Gallery', show: true, icon: <FaImages className="banner-nav-item-name-icon" /> },
-//     {
-//       key: 'Change Password',
-//       show: showPassword,
-//       icon: <FaKey className="banner-nav-item-name-icon" />
-//     },
-//     {
-//       key: 'Notifications',
-//       show: showNotification,
-//       icon: <FaRegBell className="banner-nav-item-name-icon" />
-//     }
-//   ];
-//   return items;
-// };
->>>>>>> d648346115eecacd38dca853a2fc865bbb484808

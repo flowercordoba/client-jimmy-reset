@@ -6,18 +6,15 @@ import { addUser, clearUser } from '../reducers/user/user.reducer';
 // import { avatarColors } from './static.data';
 import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
 import { APP_ENVIRONMENT } from '../services/axios';
+import { clearNotification, addNotification } from '../reducers/notifications/notification.reducer';
+import { avatarColors } from './static.data';
 
 export class Utils {
-<<<<<<< HEAD
+
   // Método para obtener un color de avatar aleatorio
   static avatarColor() {
     return avatarColors[floor(random(0.9) * avatarColors.length)];
   }
-=======
-  // static avatarColor() {
-  //   return avatarColors[floor(random(0.9) * avatarColors.length)];
-  // }
->>>>>>> d648346115eecacd38dca853a2fc865bbb484808
 
   // Método para generar un avatar basado en texto
   static generateAvatar(text: string, backgroundColor: string | CanvasGradient | CanvasPattern, foregroundColor = 'white') {
@@ -34,21 +31,13 @@ export class Utils {
     // context.fillStyle = backgroundColor;
     // context.fillRect(0, 0, canvas.width, canvas.height);
 
-<<<<<<< HEAD
+
     // Dibujar el texto en el avatar
     context.font = 'normal 80px sans-serif';
     context.fillStyle = foregroundColor;
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.fillText(text, canvas.width / 2, canvas.height / 2);
-=======
-    // // Draw text
-    // context.font = 'normal 80px sans-serif';
-    // context.fillStyle = foregroundColor;
-    // context.textAlign = 'center';
-    // context.textBaseline = 'middle';
-    // context.fillText(text, canvas.width / 2, canvas.height / 2);
->>>>>>> d648346115eecacd38dca853a2fc865bbb484808
 
     return canvas.toDataURL('image/png');
   }
@@ -60,7 +49,7 @@ export class Utils {
     setUser(result.data.user);
   }
 
-<<<<<<< HEAD
+
   // Método para limpiar la tienda (store) de la aplicación
   static clearStore({ dispatch, deleteStorageUsername, deleteSessionPageReload, setLoggedIn }: { dispatch: any; deleteStorageUsername: () => void; deleteSessionPageReload: () => void; setLoggedIn: (value: boolean) => void; }) {
     dispatch(clearUser());
@@ -80,23 +69,6 @@ export class Utils {
   static dispatchClearNotification(dispatch: (arg0: { payload: undefined; type: "notifications/clearNotification"; }) => void) {
     dispatch(clearNotification());
   }
-=======
-  // static clearStore({ dispatch, deleteStorageUsername, deleteSessionPageReload, setLoggedIn }) {
-  //   dispatch(clearUser());
-  //   dispatch(clearNotification());
-  //   deleteStorageUsername();
-  //   deleteSessionPageReload();
-  //   setLoggedIn(false);
-  // }
-
-  // static dispatchNotification(message: any, type: string, dispatch: ThunkDispatch<unknown, unknown, AnyAction>) {
-  //   dispatch(addNotification({ message, type }));
-  // }
-
-  // static dispatchClearNotification(dispatch: (arg0: { payload: undefined; type: "notifications/clearNotification"; }) => void) {
-  //   dispatch(clearNotification());
-  // }
->>>>>>> d648346115eecacd38dca853a2fc865bbb484808
 
   // Método para obtener el entorno de la aplicación
   static appEnvironment() {
@@ -162,7 +134,6 @@ export class Utils {
     return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
   }
 
-<<<<<<< HEAD
   // Método para formatear las reacciones
   static formattedReactions(reactions: ArrayLike<unknown> | { [s: string]: unknown }) {
     const postReactions = [];
@@ -177,21 +148,6 @@ export class Utils {
     }
     return postReactions;
 }
-=======
-  // static formattedReactions(reactions: ArrayLike<unknown> | { [s: string]: unknown; }) {
-  //   const postReactions = [];
-  //   for (const [key, value] of Object.entries(reactions)) {
-  //     if (value > 0) {
-  //       const reactionObject = {
-  //         type: key,
-  //         value
-  //       };
-  //       postReactions.push(reactionObject);
-  //     }
-  //   }
-  //   return postReactions;
-  // }
->>>>>>> d648346115eecacd38dca853a2fc865bbb484808
 
   // Método para acortar números grandes
   static shortenLargeNumbers(data: number | undefined) {
@@ -214,7 +170,7 @@ export class Utils {
       : '';
   }
 
-<<<<<<< HEAD
+
 // Método para eliminar un usuario de una lista
 static removeUserFromList(list: any[] | List<unknown> | null | undefined, userId: unknown) {
   if (Array.isArray(list)) {
@@ -225,13 +181,6 @@ static removeUserFromList(list: any[] | List<unknown> | null | undefined, userId
   }
   return list;
 }
-=======
-  // static removeUserFromList(list: any[] | List<unknown> | null | undefined, userId: unknown) {
-  //   const index = findIndex(list, (id) => id === userId);
-  //   list.splice(index, 1);
-  //   return list;
-  // }
->>>>>>> d648346115eecacd38dca853a2fc865bbb484808
 
   // Método para verificar si una URL contiene una palabra específica
   static checkUrl(url: string | any[], word: any) {

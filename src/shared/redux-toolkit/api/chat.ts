@@ -8,7 +8,6 @@ const getConversationList = createAsyncThunk('chat/getUserChatList', async (name
     const response = await chatService.getConversationList();
     return response.data;
   } catch (error) {
-    // Asegurar que error es de tipo any para acceder a response.data.message
     const typedError = error as any;
     Utils.dispatchNotification(typedError.response.data.message, 'error', dispatch);
   }
