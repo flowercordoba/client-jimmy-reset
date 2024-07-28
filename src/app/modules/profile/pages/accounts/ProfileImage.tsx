@@ -74,8 +74,7 @@ const ProfileImage: React.FC = () => {
         onClick={handleShow}
       >
         <img
-          src={ 'https://images.unsplash.com/photo-1721804978753-6533263d89f5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
-          // src={currentUser?.user.profilePicture || 'https://images.unsplash.com/photo-1721804978753-6533263d89f5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
+          src={currentUser?.user.profilePicture || 'https://images.unsplash.com/photo-1721804978753-6533263d89f5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
           className="img-fluid"
           style={{
             width: "100%",
