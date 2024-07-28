@@ -1,15 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { emptyPostData } from '../../../utils/static.data';
 
-const initialState = emptyPostData;
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const initialState: any = emptyPostData;
 
 const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    updatePostItem: (state, action) => {
+    updatePostItem: (state, action: PayloadAction<Partial<any>>) => {
       for (const [key, value] of Object.entries(action.payload)) {
-        state[key] = value;
+        (state as any)[key] = value;
       }
     },
     clearPost: () => {

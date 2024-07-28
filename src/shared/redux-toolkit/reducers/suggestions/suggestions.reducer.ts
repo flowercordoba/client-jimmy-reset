@@ -1,7 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getUserSuggestions } from '../../api/suggestion';
 
-const initialState = {
+interface User {
+  id: string;
+  name: string;
+
+}
+
+interface SuggestionsState {
+  users: User[];
+  isLoading: boolean;
+}
+
+const initialState: SuggestionsState = {
   users: [],
   isLoading: false
 };
@@ -10,7 +21,7 @@ const suggestionsSlice = createSlice({
   name: 'suggestions',
   initialState,
   reducers: {
-    addToSuggestions: (state, action) => {
+    addToSuggestions: (state, action: PayloadAction<{ isLoading: boolean, users: User[] }>) => {
       const { isLoading, users } = action.payload;
       state.users = [...users];
       state.isLoading = isLoading;
@@ -20,7 +31,7 @@ const suggestionsSlice = createSlice({
     builder.addCase(getUserSuggestions.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getUserSuggestions.fulfilled, (state, action) => {
+    builder.addCase(getUserSuggestions.fulfilled, (state, action: PayloadAction<{ users: User[] }>) => {
       state.isLoading = false;
       const { users } = action.payload;
       state.users = [...users];
