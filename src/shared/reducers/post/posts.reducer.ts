@@ -12,7 +12,7 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     addToPosts: (state, action) => {
-      state.posts = [...action.payload];
+      // state.posts = [...action.payload];
     }
   },
   extraReducers: (builder) => {
@@ -22,7 +22,7 @@ const postsSlice = createSlice({
     builder.addCase(getPosts.fulfilled, (state, action) => {
       state.isLoading = false;
       const { posts, totalPosts } = action.payload;
-      state.posts = [...posts];
+      // state.posts = [...posts];
       state.totalPostsCount = totalPosts;
     });
     builder.addCase(getPosts.rejected, (state) => {

@@ -1,5 +1,5 @@
-import { getUserSuggestions } from '@redux/api/suggestion';
 import { createSlice } from '@reduxjs/toolkit';
+import { getUserSuggestions } from '../../redux-toolkit/api/suggestion';
 
 const initialState = {
   users: [],
@@ -12,7 +12,7 @@ const suggestionsSlice = createSlice({
   reducers: {
     addToSuggestions: (state, action) => {
       const { isLoading, users } = action.payload;
-      state.users = [...users];
+      // state.users = [...users];
       state.isLoading = isLoading;
     }
   },
@@ -23,7 +23,7 @@ const suggestionsSlice = createSlice({
     builder.addCase(getUserSuggestions.fulfilled, (state, action) => {
       state.isLoading = false;
       const { users } = action.payload;
-      state.users = [...users];
+      // state.users = [...users];
     });
     builder.addCase(getUserSuggestions.rejected, (state) => {
       state.isLoading = false;

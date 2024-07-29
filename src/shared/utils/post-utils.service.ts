@@ -38,7 +38,7 @@ export class PostUtils {
         }
         setPostData(postData);
       }
-      PostUtils.positionCursor('editable');
+      // PostUtils.positionCursor('editable');
     });
     dispatch(
       updatePostItem({ gifUrl: '', image: '', imgId: '', imgVersion: '', video: '', videoId: '', videoVersion: '' })
@@ -53,7 +53,7 @@ export class PostUtils {
           postData.post = post;
         }
         setPostData(postData);
-        PostUtils.positionCursor('editable');
+        // PostUtils.positionCursor('editable');
       }
     });
   }
@@ -97,7 +97,7 @@ export class PostUtils {
         PostUtils.closePostModal(dispatch);
       }
     } catch (error) {
-      PostUtils.dispatchNotification(error.response.data.message, 'error', setApiResponse, setLoading, dispatch);
+      // PostUtils.dispatchNotification(error.response.data.message, 'error', setApiResponse, setLoading, dispatch);
     }
   }
 
@@ -134,46 +134,46 @@ export class PostUtils {
 
   static socketIOPost(posts: any[] | List<unknown> | null | undefined, setPosts: (arg0: any) => void) {
     posts = cloneDeep(posts);
-    socketService?.socket?.on('add post', (post: any) => {
-      posts = [post, ...posts];
-      setPosts(posts);
-    });
+    // socketService?.socket?.on('add post', (post: any) => {
+    //   posts = [post, ...posts];
+    //   setPosts(posts);
+    // });
 
-    socketService?.socket?.on('update post', (post: any) => {
-      PostUtils.updateSinglePost(posts, post, setPosts);
-    });
+    // socketService?.socket?.on('update post', (post: any) => {
+    //   PostUtils.updateSinglePost(posts, post, setPosts);
+    // });
 
-    socketService?.socket?.on('delete post', (postId: any) => {
-      const index = findIndex(posts, (postData) => postData._id === postId);
-      if (index > -1) {
-        posts = cloneDeep(posts);
-        remove(posts, { _id: postId });
-        setPosts(posts);
-      }
-    });
+    // socketService?.socket?.on('delete post', (postId: any) => {
+    //   const index = findIndex(posts, (postData) => postData._id === postId);
+    //   if (index > -1) {
+    //     posts = cloneDeep(posts);
+    //     remove(posts, { _id: postId });
+    //     setPosts(posts);
+    //   }
+    // });
 
-    socketService?.socket?.on('update like', (reactionData: { postId: any; postReactions: any; }) => {
-      const postData = find(posts, (post) => post._id === reactionData?.postId);
-      if (postData) {
-        postData.reactions = reactionData.postReactions;
-        PostUtils.updateSinglePost(posts, postData, setPosts);
-      }
-    });
+    // socketService?.socket?.on('update like', (reactionData: { postId: any; postReactions: any; }) => {
+    //   const postData = find(posts, (post) => post._id === reactionData?.postId);
+    //   if (postData) {
+    //     postData.reactions = reactionData.postReactions;
+    //     PostUtils.updateSinglePost(posts, postData, setPosts);
+    //   }
+    // });
 
-    socketService?.socket?.on('update comment', (commentData: { postId: any; commentsCount: any; }) => {
-      const postData = find(posts, (post) => post._id === commentData?.postId);
-      if (postData) {
-        postData.commentsCount = commentData.commentsCount;
-        PostUtils.updateSinglePost(posts, postData, setPosts);
-      }
-    });
+    // socketService?.socket?.on('update comment', (commentData: { postId: any; commentsCount: any; }) => {
+    //   const postData = find(posts, (post) => post._id === commentData?.postId);
+    //   if (postData) {
+    //     postData.commentsCount = commentData.commentsCount;
+    //     PostUtils.updateSinglePost(posts, postData, setPosts);
+    //   }
+    // });
   }
 
   static updateSinglePost(posts: any[] | List<[string, any]> | null | undefined, post: { _id: any | string; }, setPosts: (arg0: any) => void) {
     posts = cloneDeep(posts);
     const index = findIndex(posts, ['_id', post?._id]);
     if (index > -1) {
-      posts.splice(index, 1, post);
+      // posts.splice(index, 1, post);
       setPosts(posts);
     }
   }

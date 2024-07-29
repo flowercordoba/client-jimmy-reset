@@ -1,8 +1,8 @@
 import { useState, FC } from 'react'
-import { toAbsoluteUrl } from '../../../../../../_metronic/helpers'
 import { IProfileDetails, profileDetailsInitValues as initialValues } from '../SettingsModel'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import { toAbsoluteUrl } from '../../../../../../../../features/helpers'
 
 const profileDetailsSchema = Yup.object().shape({
   fName: Yup.string().required('First name is required'),

@@ -6,7 +6,7 @@ import { addUser, clearUser } from '../reducers/user/user.reducer';
 // import { avatarColors } from './static.data';
 import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
 import { APP_ENVIRONMENT } from '../services/axios';
-import { clearNotification, addNotification } from '../reducers/notifications/notification.reducer';
+// import { clearNotification, addNotification } from '../reducers/notifications/notification.reducer';
 import { avatarColors } from './static.data';
 
 export class Utils {
@@ -53,7 +53,7 @@ export class Utils {
   // Método para limpiar la tienda (store) de la aplicación
   static clearStore({ dispatch, deleteStorageUsername, deleteSessionPageReload, setLoggedIn }: { dispatch: any; deleteStorageUsername: () => void; deleteSessionPageReload: () => void; setLoggedIn: (value: boolean) => void; }) {
     dispatch(clearUser());
-    dispatch(clearNotification());
+    // dispatch(clearNotification());
     deleteStorageUsername();
     deleteSessionPageReload();
     setLoggedIn(false);
@@ -62,12 +62,12 @@ export class Utils {
 
   // Método para despachar una notificación
   static dispatchNotification(message: any, type: string, dispatch: ThunkDispatch<unknown, unknown, AnyAction>) {
-    dispatch(addNotification({ message, type }));
+    // dispatch(addNotification({ message, type }));
   }
 
   // Método para limpiar las notificaciones
   static dispatchClearNotification(dispatch: (arg0: { payload: undefined; type: "notifications/clearNotification"; }) => void) {
-    dispatch(clearNotification());
+    // dispatch(clearNotification());
   }
 
   // Método para obtener el entorno de la aplicación

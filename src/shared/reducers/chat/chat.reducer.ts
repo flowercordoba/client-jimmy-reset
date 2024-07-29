@@ -14,7 +14,7 @@ const chatSlice = createSlice({
   reducers: {
     addToChatList: (state, action) => {
       const { isLoading, chatList } = action.payload;
-      state.chatList = [...chatList];
+      // state.chatList = [...chatList];
       state.isLoading = isLoading;
     },
     setSelectedChatUser: (state, action) => {
@@ -31,7 +31,7 @@ const chatSlice = createSlice({
       const { list } = action.payload;
       state.isLoading = false;
       const sortedList = orderBy(list, ['createdAt'], ['desc']);
-      state.chatList = [...sortedList];
+      // state.chatList = [...sortedList];
     });
     builder.addCase(getConversationList.rejected, (state) => {
       state.isLoading = false;

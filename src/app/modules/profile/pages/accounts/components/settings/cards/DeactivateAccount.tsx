@@ -1,9 +1,9 @@
 
 import {useState, FC} from 'react'
-import {KTIcon} from '../../../../../../_metronic/helpers'
 import {deactivateAccount, IDeactivateAccount} from '../SettingsModel'
 import * as Yup from 'yup'
 import {useFormik} from 'formik'
+import { KTIcon } from '../../../../../../../../features/helpers'
 
 const deactivateAccountSchema = Yup.object().shape({
   confirm: Yup.boolean().oneOf([true], 'Please check the box to deactivate your account'),

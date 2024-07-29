@@ -28,7 +28,7 @@ const AccountPage: React.FC = () => {
       <Route
         element={
           <>
-            <AccountHeader userId={''} />
+            <AccountHeader />
             <Outlet />
           </>
         }
