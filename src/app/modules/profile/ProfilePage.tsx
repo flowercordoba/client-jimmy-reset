@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {Navigate, Routes, Route, Outlet} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../features/layout/core'
+import {PageLink} from '../../../features/layout/core'
 import {Overview} from './components/Overview'
 
 import {ProfileHeader} from './ProfileHeader'
-import { InformationsUser } from './components/Projects'
+import { InformationsUser } from './components/InformationsUser'
 import FriendList from './pages/Friends/FriendList'
 import PhotoPage from './pages/Photos/PhotoPage'
 import VideosPages from './pages/videos/VideosPages'
+import { ProfileDetails } from '../accounts/components/settings/cards/ProfileDetails'
+import { AccountHeader } from './pages/accounts/AccountHeader'
 
 const profileBreadCrumbs: Array<PageLink> = [
   {
@@ -37,7 +40,6 @@ const ProfilePage = () => (
         path='feed'
         element={
           <>
-            <PageTitle breadcrumbs={profileBreadCrumbs}>Overview</PageTitle>
             <Overview />
           </>
         }
@@ -46,7 +48,8 @@ const ProfilePage = () => (
         path='information'
         element={
           <>
-            <InformationsUser />
+
+            <AccountHeader />
           </>
         }
       />
@@ -54,7 +57,6 @@ const ProfilePage = () => (
         path='friend'
         element={
           <>
-            <PageTitle breadcrumbs={profileBreadCrumbs}>Campaigns</PageTitle>
             <FriendList />
           </>
         }
@@ -71,7 +73,6 @@ const ProfilePage = () => (
         path='videos'
         element={
           <>
-            <PageTitle breadcrumbs={profileBreadCrumbs}>Connections</PageTitle>
             <VideosPages />
           </>
         }
