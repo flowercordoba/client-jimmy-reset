@@ -1,11 +1,13 @@
 import React from "react";
 import { Navigate, Route, Routes, Outlet } from "react-router-dom";
+// import { PageLink } from "../../../features/layout/core";
 import { Settings } from "./components/settings/Settings";
 // import {AccountHeader} from './AccountHeader'
 import VideosPages from "../profile/pages/videos/VideosPages";
 import FriendPages from "../profile/pages/Friends/FriendPages";
 import PhotoPage from "../profile/pages/Photos/PhotoPage";
-// import { PageTitle } from "../../../features/layout/core";
+import { AccountHeader } from "../profile/pages/accounts/AccountHeader";
+import { Overview } from "../profile/components/Overview";
 
 
 const AccountPage: React.FC = () => {
@@ -14,7 +16,7 @@ const AccountPage: React.FC = () => {
       <Route
         element={
           <>
-            {/* <AccountHeader userId={''} /> */}
+            <AccountHeader/>
             <Outlet />
           </>
         }
@@ -24,7 +26,7 @@ const AccountPage: React.FC = () => {
           element={
             <>
               {/* <PageTitle breadcrumbs={accountBreadCrumbs}>Detalle</PageTitle> */}
-              {/* <Overview /> */}
+              <Overview />
             </>
           }
         />

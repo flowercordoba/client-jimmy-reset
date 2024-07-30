@@ -6,7 +6,7 @@ export function Connections() {
     <Content>
       <div className='d-flex flex-wrap flex-stack mb-6'>
         <h3 className='fw-bolder my-2'>
-          My Contacts
+          Mis amigos
           <span className='fs-6 text-gray-500 fw-bold ms-1'>(59)</span>
         </h3>
 
@@ -31,9 +31,8 @@ export function Connections() {
           <Card3
             avatar='media/avatars/300-6.jpg'
             name='Emma Smith'
-            job='Art Director'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
+            job='Art Director' avgEarnings={''} totalEarnings={''}            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
           />
         </div>
         <div className='col-md-6 col-xxl-4'>
@@ -41,36 +40,32 @@ export function Connections() {
             color='danger'
             name='Melody Macy'
             job='Marketing Analytic'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
-            online={true}
-          />
+            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
+            online={true} avgEarnings={''} totalEarnings={''}          />
         </div>
         <div className='col-md-6 col-xxl-4'>
           <Card3
             avatar='media/avatars/300-1.jpg'
             name='Max Smith'
-            job='Software Enginer'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
+            job='Software Enginer' avgEarnings={''} totalEarnings={''}            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
           />
         </div>
         <div className='col-md-6 col-xxl-4'>
           <Card3
             avatar='media/avatars/300-5.jpg'
             name='Sean Bean'
-            job='Web Developer'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
+            job='Web Developer' avgEarnings={''} totalEarnings={''}            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
           />
         </div>
         <div className='col-md-6 col-xxl-4'>
           <Card3
             avatar='media/avatars/300-25.jpg'
             name='Brian Cox'
-            job='UI/UX Designer'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
+            job='UI/UX Designer' avgEarnings={''} totalEarnings={''}            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
           />
         </div>
         <div className='col-md-6 col-xxl-4'>
@@ -78,18 +73,16 @@ export function Connections() {
             color='warning'
             name='Mikaela Collins'
             job='Head Of Marketing'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
-            online={true}
-          />
+            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
+            online={true} avgEarnings={''} totalEarnings={''}          />
         </div>
         <div className='col-md-6 col-xxl-4'>
           <Card3
             avatar='media/avatars/300-9.jpg'
             name='Francis Mitcham'
-            job='Software Arcitect'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
+            job='Software Arcitect' avgEarnings={''} totalEarnings={''}            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
           />
         </div>
         <div className='col-md-6 col-xxl-4'>
@@ -97,28 +90,25 @@ export function Connections() {
             color='danger'
             name='Olivia Wild'
             job='System Admin'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
-            online={true}
-          />
+            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
+            online={true} avgEarnings={''} totalEarnings={''}          />
         </div>
         <div className='col-md-6 col-xxl-4'>
           <Card3
             color='primary'
             name='Neil Owen'
             job='Account Manager'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
-            online={true}
-          />
+            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
+            online={true} avgEarnings={''} totalEarnings={''}          />
         </div>
         <div className='col-md-6 col-xxl-4'>
           <Card3
             avatar='media/avatars/300-23.jpg'
             name='Dan Wilson'
-            job='Web Desinger'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
+            job='Web Desinger' avgEarnings={''} totalEarnings={''}            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
           />
         </div>
         <div className='col-md-6 col-xxl-4'>
@@ -126,18 +116,16 @@ export function Connections() {
             color='danger'
             name='Emma Bold'
             job='Corporate Finance'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
-            online={true}
-          />
+            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
+            online={true} avgEarnings={''} totalEarnings={''}          />
         </div>
         <div className='col-md-6 col-xxl-4'>
           <Card3
             avatar='media/avatars/300-12.jpg'
             name='Ana Crown'
-            job='Customer Relationship'
-            avgEarnings='$14,560'
-            totalEarnings='$236,400'
+            job='Customer Relationship' avgEarnings={''} totalEarnings={''}            // avgEarnings='$14,560'
+            // totalEarnings='$236,400'
           />
         </div>
       </div>

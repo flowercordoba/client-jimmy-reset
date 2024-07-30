@@ -1,11 +1,11 @@
 import { Content } from '../../../../features/layout/components/content'
-
+import { ProfileDetails } from '../../accounts/components/settings/cards/ProfileDetails'
 
 export function InformationsUser() {
   return (
     <Content>
-    <div>hola aqui la info de iser cinectado</div>
 
+      <ProfileDetails />
 
     </Content>
   )

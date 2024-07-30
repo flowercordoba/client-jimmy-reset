@@ -49,7 +49,7 @@ const ProfilePage = () => (
         element={
           <>
 
-            <AccountHeader />
+            <InformationsUser />
           </>
         }
       />

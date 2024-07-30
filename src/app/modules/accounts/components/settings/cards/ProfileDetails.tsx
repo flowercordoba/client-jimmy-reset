@@ -128,26 +128,6 @@ const ProfileDetails: FC = () => {
             </div>
 
             <div className="row mb-6">
-              <label className="col-lg-4 col-form-label required fw-bold fs-6">
-                Company
-              </label>
-
-              <div className="col-lg-8 fv-row">
-                <input
-                  type="text"
-                  className="form-control form-control-lg form-control-solid"
-                  placeholder="Company name"
-                  {...formik.getFieldProps("company")}
-                />
-                {formik.touched.company && formik.errors.company && (
-                  <div className="fv-plugins-message-container">
-                    <div className="fv-help-block">{formik.errors.company}</div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="row mb-6">
               <label className="col-lg-4 col-form-label fw-bold fs-6">
                 <span className="required">Contact Phone</span>
               </label>
@@ -325,6 +305,9 @@ const ProfileDetails: FC = () => {
           </div>
         </form>
       </div>
+
+
+      
     </div>
   );
 };

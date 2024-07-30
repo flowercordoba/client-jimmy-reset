@@ -48,12 +48,12 @@ const Card1: FC<Props> = ({
         <div className='d-flex flex-center flex-wrap mb-5'>
           <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mx-3 mb-3'>
             <div className='fs-6 fw-bolder text-gray-700'>{avgEarnings}</div>
-            <div className='fw-bold text-gray-500'>Avg. Earnings</div>
+            {/* <div className='fw-bold text-gray-500'>Avg. Earnings</div> */}
           </div>
 
           <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 mx-3 px-4 mb-3'>
             <div className='fs-6 fw-bolder text-gray-700'>{totalEarnings}</div>
-            <div className='fw-bold text-gray-500'>Total Sales</div>
+            {/* <div className='fw-bold text-gray-500'>Total Sales</div> */}
           </div>
         </div>
 

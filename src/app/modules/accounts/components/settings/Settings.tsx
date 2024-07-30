@@ -1,19 +1,19 @@
 import {ProfileDetails} from './cards/ProfileDetails'
+import {SignInMethod} from './cards/SignInMethod'
+// import {ConnectedAccounts} from './cards/ConnectedAccounts'
+// import {EmailPreferences} from './cards/EmailPreferences'
+// import {Notifications} from './cards/Notifications'
+// import {DeactivateAccount} from './cards/DeactivateAccount'
 import { Content } from '../../../../../features/layout/components/content'
-// import { DeactivateAccount } from './cards/DeactivateAccount'
-import { Notifications } from './cards/Notifications'
-import Education from './cards/Education'
-import Location from './cards/Location'
-import InfoGeneral from './cards/InfoGeneral'
 
 export function Settings() {
   return (
     <Content>
-      < InfoGeneral/>
-      <Education />
-      <Location />
       <ProfileDetails />
-      <Notifications />
+      <SignInMethod />
+      {/* <ConnectedAccounts />
+      <EmailPreferences />
+      <Notifications /> */}
       {/* <DeactivateAccount /> */}
     </Content>
   )
