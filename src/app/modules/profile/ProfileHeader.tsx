@@ -1,10 +1,14 @@
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../auth";
 import { Content } from "../../../features/layout/components/content";
 import ProfileImage from "./pages/accounts/ProfileImage";
 import CoverImage from "./pages/accounts/CoverImage";
+import AboutMe from "./pages/accounts/AboutMe";
+
 
 const ProfileHeader: FC = () => {
+  const { currentUser } = useAuth();
   const location = useLocation();
 
   return (
@@ -14,10 +18,14 @@ const ProfileHeader: FC = () => {
           <div className="card-body pt-9 pb-0">
             <CoverImage />
             <div className="d-flex flex-wrap flex-sm-nowrap mb-3">
-              <div className="me-7 mb-4" style={{ marginTop: '-80px' }}>
+              <div className="d-flex me-7 mb-4" style={{ marginTop: '-80px' }}>
                 <ProfileImage />
+                <div style={{ marginTop: '80px', marginLeft: '20px'}}>
+                  <AboutMe name={currentUser?.user.username || ''}/>
+                </div>
               </div>
             </div>
+
 
             <div className="d-flex overflow-auto h-55px">
               <ul className="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-10 fw-bolder flex-nowrap">
