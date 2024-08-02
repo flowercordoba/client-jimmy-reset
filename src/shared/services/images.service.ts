@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_APP_API_URL || 'http://yeebam-dev.eba-jubbbszd.us-east-1.elasticbeanstalk.com/api/v1';
+const API_URL = import.meta.env.VITE_APP_API_URL || 'http://serversocial.xyz/api/v1';
 
 // Subir una nueva imagen de perfil
 export const uploadProfileImage = async (image: string | ArrayBuffer | null) => {
