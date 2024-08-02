@@ -5,47 +5,61 @@ import {
 } from "../SettingsModel";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { toAbsoluteUrl } from "../../../../../../features/helpers";
+import { useAuth } from "../../../../auth";
+import { userService } from "../../../../../../shared/services/user.service";
+// import { toAbsoluteUrl } from "../../../../../../features/helpers";
 
 const profileDetailsSchema = Yup.object().shape({
-  fName: Yup.string().required("First name is required"),
-  lName: Yup.string().required("Last name is required"),
-  company: Yup.string().required("Company name is required"),
-  contactPhone: Yup.string().required("Contact phone is required"),
-  companySite: Yup.string().required("Company site is required"),
-  country: Yup.string().required("Country is required"),
-  language: Yup.string().required("Language is required"),
-  timeZone: Yup.string().required("Time zone is required"),
-  currency: Yup.string().required("Currency is required"),
+  quote: Yup.string().required("Este campo es requerido"),
+  work: Yup.string(),
+  school: Yup.string().required("Este campo es requerido"),
+  location: Yup.string().required("Este campo es requerido"),
 });
+// const profileDetailsSchema = Yup.object().shape({
+//   fName: Yup.string().required("First name is required"),
+//   lName: Yup.string().required("Last name is required"),
+//   company: Yup.string().required("Company name is required"),
+//   contactPhone: Yup.string().required("Contact phone is required"),
+//   companySite: Yup.string().required("Company site is required"),
+//   country: Yup.string().required("Country is required"),
+//   language: Yup.string().required("Language is required"),
+//   timeZone: Yup.string().required("Time zone is required"),
+//   currency: Yup.string().required("Currency is required"),
+// });
 
 const ProfileDetails: FC = () => {
+  const { currentUser, refreshUser } = useAuth();
   const [data, setData] = useState<IProfileDetails>(initialValues);
   const updateData = (fieldsToUpdate: Partial<IProfileDetails>): void => {
     const updatedData = Object.assign(data, fieldsToUpdate);
     setData(updatedData);
   };
+  const testData: IProfileDetails = {
+    work: currentUser?.user.work,
+    quote: currentUser?.user.quote || '',
+    school: currentUser?.user.school || '',
+    location: currentUser?.user.location || ''
+  }
 
   const [loading, setLoading] = useState(false);
   const formik = useFormik<IProfileDetails>({
-    initialValues,
+    initialValues: testData,
     validationSchema: profileDetailsSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setLoading(true);
-      setTimeout(() => {
-        values.communications.email = data.communications.email;
-        values.communications.phone = data.communications.phone;
-        values.allowMarketing = data.allowMarketing;
-        const updatedData = Object.assign(data, values);
-        setData(updatedData);
+      const updatedData = Object.assign(data, values);
+      setData(updatedData);
+      userService.updateBasicInfo(data).then((response) => {
+        console.log(response)
+        refreshUser(currentUser?.token || '')
         setLoading(false);
-      }, 1000);
+      })
     },
   });
 
   return (
     <div className="card mb-5 mb-xl-10">
-      <div
+      {/* <div
         className="card-header border-0 cursor-pointer"
         role="button"
         data-bs-toggle="collapse"
@@ -56,38 +70,14 @@ const ProfileDetails: FC = () => {
         <div className="card-title m-0">
           <h3 className="fw-bolder m-0">Detalle de la cuenta</h3>
         </div>
-      </div>
+      </div> */}
 
       <div id="kt_account_profile_details" className="collapse show">
         <form onSubmit={formik.handleSubmit} noValidate className="form">
           <div className="card-body border-top p-9">
             <div className="row mb-6">
-              <label className="col-lg-4 col-form-label fw-bold fs-6">
-                Avatar
-              </label>
-              <div className="col-lg-8">
-                <div
-                  className="image-input image-input-outline"
-                  data-kt-image-input="true"
-                  style={{
-                    backgroundImage: `url(${toAbsoluteUrl(
-                      "media/avatars/blank.png"
-                    )})`,
-                  }}
-                >
-                  <div
-                    className="image-input-wrapper w-125px h-125px"
-                    style={{
-                      backgroundImage: `url(${toAbsoluteUrl(data.avatar)})`,
-                    }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="row mb-6">
               <label className="col-lg-4 col-form-label required fw-bold fs-6">
-                Full Name
+                Acerca de mi
               </label>
 
               <div className="col-lg-8">
@@ -96,29 +86,13 @@ const ProfileDetails: FC = () => {
                     <input
                       type="text"
                       className="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                      placeholder="First name"
-                      {...formik.getFieldProps("fName")}
+                      placeholder="Escribe algo interesante de ti"
+                      {...formik.getFieldProps("quote")}
                     />
-                    {formik.touched.fName && formik.errors.fName && (
+                    {formik.touched.quote && formik.errors.quote && (
                       <div className="fv-plugins-message-container">
                         <div className="fv-help-block">
-                          {formik.errors.fName}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="col-lg-6 fv-row">
-                    <input
-                      type="text"
-                      className="form-control form-control-lg form-control-solid"
-                      placeholder="Last name"
-                      {...formik.getFieldProps("lName")}
-                    />
-                    {formik.touched.lName && formik.errors.lName && (
-                      <div className="fv-plugins-message-container">
-                        <div className="fv-help-block">
-                          {formik.errors.lName}
+                          {formik.errors.quote}
                         </div>
                       </div>
                     )}
@@ -128,6 +102,77 @@ const ProfileDetails: FC = () => {
             </div>
 
             <div className="row mb-6">
+              <label className="col-lg-4 col-form-label required fw-bold fs-6">
+              Dirección
+              </label>
+
+              <div className="col-lg-8">
+                <div className="row">
+                  <div className="col-lg-6 fv-row">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                      placeholder="El lugar dónde encontrarte"
+                      {...formik.getFieldProps("location")}
+                    />
+                    {formik.touched.location && formik.errors.location && (
+                      <div className="fv-plugins-message-container">
+                        <div className="fv-help-block">
+                          {formik.errors.location}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row mb-6">
+              <label className="col-lg-4 col-form-label fw-bold fs-6">
+                Trabajo
+              </label>
+
+              <div className="col-lg-8">
+                <div className="row">
+                  <div className="col-lg-6 fv-row">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                      placeholder="¿Dónde trabajas?"
+                      {...formik.getFieldProps("work")}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row mb-6">
+              <label className="col-lg-4 col-form-label required fw-bold fs-6">
+              Centro de estudios
+              </label>
+
+              <div className="col-lg-8">
+                <div className="row">
+                  <div className="col-lg-6 fv-row">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                      placeholder="Última institución en la que estudiaste"
+                      {...formik.getFieldProps("school")}
+                    />
+                    {formik.touched.school && formik.errors.school && (
+                      <div className="fv-plugins-message-container">
+                        <div className="fv-help-block">
+                          {formik.errors.school}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <div className="row mb-6">
               <label className="col-lg-4 col-form-label fw-bold fs-6">
                 <span className="required">Contact Phone</span>
               </label>
@@ -281,7 +326,7 @@ const ProfileDetails: FC = () => {
                   </label>
                 </div>
               </div>
-            </div>
+            </div> */}
 
           </div>
 
@@ -291,13 +336,13 @@ const ProfileDetails: FC = () => {
               className="btn btn-primary"
               disabled={loading}
             >
-              {!loading && "Save Changes"}
+              {!loading && "Guardar"}
               {loading && (
                 <span
                   className="indicator-progress"
                   style={{ display: "block" }}
                 >
-                  Please wait...{" "}
+                  Guardando...{" "}
                   <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
                 </span>
               )}
