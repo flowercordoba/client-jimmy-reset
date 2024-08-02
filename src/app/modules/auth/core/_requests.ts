@@ -2,7 +2,7 @@
 import axios from "axios";
 // import { ICurrentUser } from "./_models";
 
-const API_URL = import.meta.env.VITE_APP_API_URL || 'http://serversocial.xyz/api/v1';
+const API_URL = import.meta.env.VITE_APP_API_URL || 'http://api.serversocial.xyz/api/v1';
 
 export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/currentuser`;
 export const LOGIN_URL = `${API_URL}/signin`;
