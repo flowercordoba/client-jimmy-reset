@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // when developing locally, change this value to local
 export const APP_ENVIRONMENT = 'local';
-export const BASE_ENDPOINT = import.meta.env.VITE_APP_API_URL || 'http://yeebam-dev.eba-jubbbszd.us-east-1.elasticbeanstalk.com/api/v1';
+export const BASE_ENDPOINT = import.meta.env.VITE_APP_API_URL || 'http://yeebam-dev.eba-jubbbszd.us-east-1.elasticbeanstalk.com';
 
 const BASE_URL = `${BASE_ENDPOINT}/api/v1`;
 
