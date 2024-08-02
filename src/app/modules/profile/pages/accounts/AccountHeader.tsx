@@ -4,8 +4,10 @@ import { ItemsNavegation } from "./ItemsNavegation";
 import ProfileImage from "./ProfileImage";
 import AboutMe from "./AboutMe";
 import CoverImage from "./CoverImage";
+import { useAuth } from "../../../auth";
 
 const AccountHeader: FC = () => {
+  const { currentUser } = useAuth()
   return (
     <>
       <Content>
@@ -16,7 +18,7 @@ const AccountHeader: FC = () => {
               <div className="me-7 mb-4" style={{ marginTop: '-80px' }}>
                 <ProfileImage />
               </div>
-              <AboutMe />
+              <AboutMe name={currentUser?.user.username || ''} />
             </div>
             <ItemsNavegation />
           </div>
