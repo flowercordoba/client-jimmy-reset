@@ -1,19 +1,8 @@
 import axios from 'axios';
 
-export let BASE_ENDPOINT = '';
-
 // when developing locally, change this value to local
 export const APP_ENVIRONMENT = 'local';
-
-if (APP_ENVIRONMENT === 'local') {
-  BASE_ENDPOINT = 'http://localhost:4000';
-} else if (APP_ENVIRONMENT === 'development') {
-  BASE_ENDPOINT = 'https://api.dev.dominio.com';
-} else if (APP_ENVIRONMENT === 'staging') {
-  BASE_ENDPOINT = 'https://api.stg.dominio.com';
-} else if (APP_ENVIRONMENT === 'production') {
-  BASE_ENDPOINT = 'https://api.dominio.com';
-}
+export const BASE_ENDPOINT = import.meta.env.VITE_APP_API_URL || 'http://yeebam-dev.eba-jubbbszd.us-east-1.elasticbeanstalk.com/api/v1';
 
 const BASE_URL = `${BASE_ENDPOINT}/api/v1`;
 
