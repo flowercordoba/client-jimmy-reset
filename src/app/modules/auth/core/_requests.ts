@@ -56,7 +56,7 @@ export function requestPassword(email: string) {
 
 // Obtener usuario por token
 export function getUserByToken(token: string) {
-  console.log('getUserByToken', token);
+  // console.log('getUserByToken', token);
   return axios.get<any>(GET_USER_BY_ACCESSTOKEN_URL, {
     headers: {
       ...axiosConfig.headers,

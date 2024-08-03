@@ -1,15 +1,15 @@
 import { FC } from 'react'
 import { useIntl } from 'react-intl'
 import { Content } from '../../../features/layout/components/content'
-import { ToolbarWrapper } from '../../../features/layout/components/toolbar'
 import { PageTitle } from '../../../features/layout/core'
+import Feedpage from './components/Feedpage'
 
 
 const FeedDashboardWrapper: FC = () => (
+  
   <>
-    <ToolbarWrapper />
     <Content>
-      <div>Feed</div>
+      <Feedpage />
     </Content>
   </>
 )

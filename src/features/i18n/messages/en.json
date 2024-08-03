@@ -6,7 +6,7 @@
   "MENU.PAGES": "Pages",
   "MENU.FEATURES": "Features",
   "MENU.APPS": "Apps",
-  "MENU.DASHBOARD": "Inicio",
+  "MENU.DASHBOARD": "Dashboard",
   "AUTH.GENERAL.OR": "Or",
   "AUTH.GENERAL.SUBMIT_BUTTON": "Submit",
   "AUTH.GENERAL.NO_ACCOUNT": "Don't have an account?",
@@ -65,5 +65,7 @@
   "ECOMMERCE.CUSTOMERS.UPDATE_STATUS.TITLE": "Status has been updated for selected customers",
   "ECOMMERCE.CUSTOMERS.UPDATE_STATUS.MESSAGE": "Selected customers status have successfully been updated",
   "ECOMMERCE.CUSTOMERS.EDIT.UPDATE_MESSAGE": "Customer has been updated",
-  "ECOMMERCE.CUSTOMERS.EDIT.ADD_MESSAGE": "Customer has been created"
+  "ECOMMERCE.CUSTOMERS.EDIT.ADD_MESSAGE": "Customer has been created",
+  "Inicio": "Home",
+  "Feed": "Feed"
 }

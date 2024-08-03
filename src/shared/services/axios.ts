@@ -4,7 +4,7 @@ import axios from 'axios';
 export const APP_ENVIRONMENT = 'local';
 export const BASE_ENDPOINT = import.meta.env.VITE_APP_API_URL || 'https://api.serversocial.xyz';
 
-const BASE_URL = `${BASE_ENDPOINT}/api/v1`;
+const BASE_URL = `${BASE_ENDPOINT}/`;
 
 export default axios.create({
   baseURL: BASE_URL,

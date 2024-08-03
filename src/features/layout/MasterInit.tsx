@@ -18,33 +18,33 @@ export function MasterInit() {
   const [initialized, setInitialized] = useState(false);
 
   const pluginsInitialization = () => {
-    console.log('Initializing ThemeModeComponent');
+    // console.log('Initializing ThemeModeComponent');
     ThemeModeComponent.init();
 
     setTimeout(() => {
-      console.log('Initializing ToggleComponent');
+      // console.log('Initializing ToggleComponent');
       ToggleComponent.bootstrap();
 
-      console.log('Initializing ScrollTopComponent');
+      // console.log('Initializing ScrollTopComponent');
       ScrollTopComponent.bootstrap();
 
-      console.log('Initializing DrawerComponent');
+      // console.log('Initializing DrawerComponent');
       DrawerComponent.bootstrap();
 
-      console.log('Initializing StickyComponent');
+      // console.log('Initializing StickyComponent');
       StickyComponent.bootstrap();
 
-      console.log('Initializing MenuComponent');
+      // console.log('Initializing MenuComponent');
       MenuComponent.bootstrap();
 
-      console.log('Initializing ScrollComponent');
+      // console.log('Initializing ScrollComponent');
       ScrollComponent.bootstrap();
 
-      console.log('Initializing SwapperComponent');
+      // console.log('Initializing SwapperComponent');
       SwapperComponent.bootstrap();
 
       document.querySelectorAll('[data-bs-toggle="tab"]').forEach((tab) => {
-        console.log('Initializing Tab', tab);
+        // console.log('Initializing Tab', tab);
         Tab.getOrCreateInstance(tab);
       });
     }, 500);

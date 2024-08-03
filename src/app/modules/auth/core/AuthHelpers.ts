@@ -16,7 +16,7 @@ const getAuth = (): AuthModel | undefined => {
   try {
     const auth: AuthModel = JSON.parse(lsValue) as AuthModel
     if (auth) {
-      console.log('auth-AuthModel',auth)
+      // console.log('auth-AuthModel',auth)
 
       return auth
     }
