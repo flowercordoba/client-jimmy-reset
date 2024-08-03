@@ -292,7 +292,7 @@ class SwapperComponent {
     const parentSelector = this.getOption('parent')?.toString();
     const mode = this.getOption('mode');
 
-    console.log('update called with parentSelector:', parentSelector, 'mode:', mode);
+    // console.log('update called with parentSelector:', parentSelector, 'mode:', mode);
 
     if (!parentSelector) {
       console.error('Parent selector is empty');

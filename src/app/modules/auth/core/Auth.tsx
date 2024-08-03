@@ -27,7 +27,7 @@ const initAuthContextPropsState = {
   refreshUser: (token: string) => {},
 }
 console.log('initAuthContextPropsState.auth',initAuthContextPropsState.auth)
-console.log('initAuthContextPropsState.currentUser',initAuthContextPropsState.currentUser)
+// console.log('initAuthContextPropsState.currentUser',initAuthContextPropsState.currentUser)
 
 
 const AuthContext = createContext<AuthContextProps>(initAuthContextPropsState)
@@ -115,15 +115,15 @@ const AuthInit: FC<WithChildren> = ({children}) => {
   // }, [])
 
   useEffect(() => {
-    console.log('AuthInit useEffect called with auth:', auth);
-    console.log('AuthInit useEffect called with currentUser:', currentUser);
-    console.log('AuthInit useEffect called with auth:', auth?.token);
+    // console.log('AuthInit useEffect called with auth:', auth);
+    // console.log('AuthInit useEffect called with currentUser:', currentUser);
+    // console.log('AuthInit useEffect called with auth:', auth?.token);
     const requestUser = async (apiToken: string) => {
       try {
         if (!currentUser) {
           const { data } = await getUserByToken(apiToken);
           if (data) {
-            console.log('User data received:', data);
+            // console.log('User data received:', data);
             setCurrentUser(data);
           }
         }
