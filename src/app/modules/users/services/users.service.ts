@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import axios from 'axios';
 
@@ -85,4 +86,3 @@ class UsersService {
 }
 
 export const usersService = new UsersService();
-zXZ CE38
