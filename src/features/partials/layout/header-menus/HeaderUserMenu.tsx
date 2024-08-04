@@ -15,8 +15,8 @@ const HeaderUserMenu: FC = () => {
           <div className="symbol symbol-50px me-5">
             <img
               alt="Profile Image"
-              src={`${'https://images.unsplash.com/photo-1721804978753-6533263d89f5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}`}
-              // src={`${currentUser?.user.profilePicture || 'https://images.unsplash.com/photo-1721804978753-6533263d89f5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}`}
+              // src={`${'https://images.unsplash.com/photo-1721804978753-6533263d89f5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}`}
+              src={`${currentUser?.user.profilePicture}`}
               className="rounded-circle"
               style={{ width: "40px", height: "40px", objectFit: "cover" }}
             />
