@@ -27,7 +27,7 @@ const HeaderUserMenu: FC = () => {
               {currentUser?.user.username}
               
               <span className="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">
-                Verificado
+              {currentUser?.user.email}
               </span>
             </div>
             <a className="fw-bold text-muted text-hover-primary fs-7">
