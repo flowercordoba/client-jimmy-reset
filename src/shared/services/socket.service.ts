@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { io } from 'socket.io-client';
-import { BASE_ENDPOINT } from './axios';
+import { store } from '../../store/store';
+import { addNotification } from '../../app/modules/notifications/reducers/notificationSlice';
+
+const BASE_ENDPOINT = 'http://localhost:5000';
 
 class SocketService {
-  socket:any
+  socket: any;
 
   setupSocketConnection() {
+    console.log('Connecting to:', BASE_ENDPOINT);
     this.socket = io(BASE_ENDPOINT, {
       transports: ['websocket'],
       secure: true
@@ -18,12 +22,17 @@ class SocketService {
       console.log('connected');
     });
 
-    this.socket.on('disconnect', (reason:any) => {
+    this.socket.on('notification', (notification: any) => {
+      console.log('Received notification:', notification);
+      store.dispatch(addNotification(notification));
+    });
+
+    this.socket.on('disconnect', (reason: any) => {
       console.log(`Reason: ${reason}`);
       this.socket.connect();
     });
 
-    this.socket.on('connect_error', (error:any) => {
+    this.socket.on('connect_error', (error: any) => {
       console.log(`Error: ${error}`);
       this.socket.connect();
     });

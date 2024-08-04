@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from "./axios";
+
+import axios from "../../../../shared/services/axios";
+
 
 class NotificationService {
   private baseUrl = 'http://localhost:5000/api/v1';

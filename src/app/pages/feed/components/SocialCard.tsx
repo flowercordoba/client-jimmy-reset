@@ -10,7 +10,9 @@ const SocialCard: React.FC = () => {
       <div className="card-header justify-content-start align-items-center pt-4">
         {/* Photo */}
         <div className="symbol symbol-45px me-5">
-          <img src={`${currentUser?.user.profilePicture}`}alt="" />
+          <img src={`${currentUser?.user.profilePicture}`}
+             className="rounded-circle"
+             style={{ width: "40px", height: "40px", objectFit: "cover" }}/>
         </div>
      
         <span className="text-gray-500 fw-semibold fs-6">En que piensas?, {`${currentUser?.user.username}`}?</span>

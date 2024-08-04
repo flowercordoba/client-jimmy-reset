@@ -301,11 +301,11 @@ class SwapperComponent {
 
     const parentElement = document.querySelector(parentSelector);
     if (!parentElement) {
-      console.error(`No parent element found for selector: ${parentSelector}`);
+      // console.error(`No parent element found for selector: ${parentSelector}`);
       return;
     }
 
-    console.log('Parent element found:', parentElement);
+    // console.log('Parent element found:', parentElement);
 
     const elementId = this.element.id;
     if (!elementId) {

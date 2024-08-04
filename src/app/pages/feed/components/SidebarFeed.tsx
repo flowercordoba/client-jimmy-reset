@@ -20,8 +20,8 @@ const SidebarFeed: React.FC = () => {
           <div className="d-flex flex-column text-center mb-9 px-9">
             <div className="symbol symbol-80px symbol-lg-150px mb-4">
               <img src={`${currentUser?.user.profilePicture}`} alt="" 
-                  //  className="rounded-circle"
-                  //  style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                   className="rounded-circle"
+                   style={{ width: "100px", height: "100px", objectFit: "cover" }}
                    />
               
             </div>
@@ -33,24 +33,24 @@ const SidebarFeed: React.FC = () => {
           <div className="row px-9 mb-4">
             <div className="col-md-4 text-center">
               <div className="text-gray-800 fw-bold fs-3">
-                <span className="m-0" data-kt-countup="true" data-kt-countup-value="642">0</span>
+                <span className="m-0" data-kt-countup="true" data-kt-countup-value="642">{currentUser?.user.postsCount}</span>
               </div>
-              <span className="text-gray-500 fs-8 d-block fw-bold">POSTS</span>
+              <span className="text-gray-500 fs-8 d-block fw-bold">Publicaciones</span>
             </div>
             <div className="col-md-4 text-center">
               <div className="text-gray-800 fw-bold fs-3">
-                <span className="m-0" data-kt-countup="true" data-kt-countup-value="24">0</span>K
+                <span className="m-0" data-kt-countup="true" data-kt-countup-value="24">{currentUser?.user.followersCount}</span>
               </div>
-              <span className="text-gray-500 fs-8 d-block fw-bold">FOLLOWERS</span>
+              <span className="text-gray-500 fs-8 d-block fw-bold">Seguidores</span>
             </div>
             <div className="col-md-4 text-center">
               <div className="text-gray-800 fw-bold fs-3">
-                <span className="m-0" data-kt-countup="true" data-kt-countup-value="12">0</span>K
+                <span className="m-0" data-kt-countup="true" data-kt-countup-value="12">{currentUser?.user.followingCount}</span>
               </div>
-              <span className="text-gray-500 fs-8 d-block fw-bold">FOLLOWING</span>
+              <span className="text-gray-500 fs-8 d-block fw-bold">Siguiendo</span>
             </div>
           </div>
-          <div className="m-0">
+          {/* <div className="m-0">
             <ul className="nav nav-pills nav-pills-custom flex-column border-transparent fs-5 fw-bold">
               <li className="nav-item mt-5">
                 <a className="nav-link text-muted text-active-primary ms-0 py-0 me-10 ps-9 border-0 active" href="pages/social/feeds.html">
@@ -96,7 +96,7 @@ const SidebarFeed: React.FC = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
    

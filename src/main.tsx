@@ -12,6 +12,8 @@ import './features/assets/sass/style.scss';
 import { AppRoutes } from './app/routing/AppRoutes';
 import { AuthProvider, setupAxios } from './app/modules/auth';
 import { I18nProvider } from './features/i18n/Metronici18n';
+import { Provider } from 'react-redux';
+import { store } from './store/store'; // Asegúrate de que la ruta sea correcta
 
 setupAxios(axios);
 Chart.register(...registerables);
@@ -20,13 +22,15 @@ const queryClient = new QueryClient();
 const container = document.getElementById('root');
 if (container) {
   createRoot(container).render(
-    <QueryClientProvider client={queryClient}>
-      <I18nProvider>
-        <AuthProvider>
-          <AppRoutes />
-        </AuthProvider>
-      </I18nProvider>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-    </QueryClientProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <I18nProvider>
+          <AuthProvider>
+            <AppRoutes />
+          </AuthProvider>
+        </I18nProvider>
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      </QueryClientProvider>
+    </Provider>
   );
 }
