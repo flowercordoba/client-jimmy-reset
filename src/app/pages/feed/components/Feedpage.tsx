@@ -12,9 +12,9 @@ const Feedpage = () => {
           <div className="container-xxl" id="kt_content_container">
             <div className="d-flex flex-row">
               <SidebarFeed />
-              {/* <FeedPost /> */}
               <div className="w-100 flex-lg-row-fluid mx-lg-13">
               <FeedPost />
+
               </div>
               <div className="col-lg-3">
                 <SideberRFeed />

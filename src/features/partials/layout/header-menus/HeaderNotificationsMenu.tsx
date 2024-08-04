@@ -13,17 +13,10 @@ const HeaderNotificationsMenu: FC = () => {
   const loading = useSelector(selectNotificationLoading);
   const error = useSelector(selectNotificationError);
 
-  console.log(loading, error);
-
   useEffect(() => {
-    console.log('Dispatching fetchNotifications');
     dispatch(fetchNotifications());
     socketService.setupSocketConnection();
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log('Notifications:', notifications);
-  }, [notifications]);
 
   const handleMarkAsRead = (id: string) => {
     dispatch(markNotificationAsRead(id));
@@ -34,50 +27,29 @@ const HeaderNotificationsMenu: FC = () => {
   };
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {}</div>;
-
+  if (error) return <div>Error: {error}</div>;
   if (!Array.isArray(notifications)) return <div>No notifications available</div>;
 
   return (
-    <div
-      className='menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px'
-      data-kt-menu='true'
-    >
-      <div
-        className='d-flex flex-column bgi-no-repeat rounded-top'
-        style={{ backgroundImage: `url('${toAbsoluteUrl('media/misc/menu-header-bg.jpg')}')` }}
-      >
+    <div className='menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px' data-kt-menu='true'>
+      <div className='d-flex flex-column bgi-no-repeat rounded-top' style={{ backgroundImage: `url('${toAbsoluteUrl('media/misc/menu-header-bg.jpg')}')` }}>
         <h3 className='text-white fw-bold px-9 mt-10 mb-6'>
           Notificaciones <span className='fs-8 opacity-75 ps-3'>24 </span>
         </h3>
 
         <ul className='nav nav-line-tabs nav-line-tabs-2x nav-stretch fw-bold px-9'>
           <li className='nav-item'>
-            <a
-              className='nav-link text-white opacity-75 opacity-state-100 pb-4'
-              data-bs-toggle='tab'
-              href='#kt_topbar_notifications_1'
-            >
+            <a className='nav-link text-white opacity-75 opacity-state-100 pb-4' data-bs-toggle='tab' href='#kt_topbar_notifications_1'>
               Todas
             </a>
           </li>
-
           <li className='nav-item'>
-            <a
-              className='nav-link text-white opacity-75 opacity-state-100 pb-4 active'
-              data-bs-toggle='tab'
-              href='#kt_topbar_notifications_2'
-            >
+            <a className='nav-link text-white opacity-75 opacity-state-100 pb-4 active' data-bs-toggle='tab' href='#kt_topbar_notifications_2'>
               Sin leer
             </a>
           </li>
-
           <li className='nav-item'>
-            <a
-              className='nav-link text-white opacity-75 opacity-state-100 pb-4'
-              data-bs-toggle='tab'
-              href='#kt_topbar_notifications_3'
-            >
+            <a className='nav-link text-white opacity-75 opacity-state-100 pb-4' data-bs-toggle='tab' href='#kt_topbar_notifications_3'>
               Leídas
             </a>
           </li>
@@ -154,10 +126,7 @@ const HeaderNotificationsMenu: FC = () => {
             ))}
           </div>
           <div className='py-3 text-center border-top'>
-            <Link
-              to='/crafted/pages/profile'
-              className='btn btn-color-gray-600 btn-active-color-primary'
-            >
+            <Link to='/crafted/pages/profile' className='btn btn-color-gray-600 btn-active-color-primary'>
               Ver todas <KTIcon iconName='arrow-right' className='fs-5' />
             </Link>
           </div>

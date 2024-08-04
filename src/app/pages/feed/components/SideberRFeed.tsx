@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { userService } from '../../../../shared/services/user.service';
+import { friendRequestService } from '../../../../shared/services/friendRequestService';
+import { useAuth } from '../../../modules/auth';
+import SolicitudesEnviadas from '../../../modules/friend/components/SolicitudesEnviadas';
 
 interface User {
   _id: string;
@@ -11,8 +15,23 @@ interface User {
   lastActive: string;
 }
 
+interface FriendRequest {
+  _id: string;
+  senderId: string;
+  receiverId: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 const SideberRFeed: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [friendRequests, setFriendRequests] = useState<FriendRequest[]>([]);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const { currentUser } = useAuth();
+  // src={`${currentUser?.user.profilePicture}`}
+  const userId = `${currentUser?.user._id}`; 
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -24,8 +43,47 @@ const SideberRFeed: React.FC = () => {
       }
     };
 
+    const fetchFriendRequests = async () => {
+      try {
+        const response = await friendRequestService.getFriendRequests();
+        setFriendRequests(response);
+      } catch (error) {
+        console.error('Error fetching friend requests:', error);
+      }
+    };
+
     fetchUsers();
+    fetchFriendRequests();
   }, []);
+
+  const sendFriendRequest = async (userId: string) => {
+    try {
+      const response = await friendRequestService.sendFriendRequest(userId);
+      console.log('Friend request sent:', response);
+      setMessage('Friend request sent successfully!');
+      setFriendRequests([...friendRequests, response.friendRequest]);
+      setTimeout(() => setMessage(null), 3000); // Clear message after 3 seconds
+    } catch (error) {
+      console.error('Error sending friend request:', error);
+      setMessage('Error sending friend request.');
+      setTimeout(() => setMessage(null), 3000); // Clear message after 3 seconds
+    }
+  };
+
+  const cancelFriendRequest = async (requestId: string) => {
+    try {
+      await friendRequestService.cancelFriendRequest(requestId);
+      setFriendRequests(friendRequests.filter(request => request._id !== requestId));
+      setMessage('Friend request cancelled.');
+      setTimeout(() => setMessage(null), 3000); // Clear message after 3 seconds
+    } catch (error) {
+      console.error('Error cancelling friend request:', error);
+      setMessage('Error cancelling friend request.');
+      setTimeout(() => setMessage(null), 3000); // Clear message after 3 seconds
+    }
+  };
+
+  const filteredUsers = users.filter(user => !friendRequests.some(request => request.receiverId === user._id && request.status === 'pending'));
 
   return (
     <div
@@ -38,17 +96,14 @@ const SideberRFeed: React.FC = () => {
       data-kt-drawer-direction="end"
       data-kt-drawer-toggle="#kt_social_end_sidebar_toggle"
     >
-      {/* Social widget 1 */}
+      {message && <div className="alert alert-success">{message}</div>}
       <div className="card mb-5 mb-xl-8">
-        {/* Header */}
         <div className="card-header border-0 pt-5">
           <h3 className="card-title align-items-start flex-column">
             <span className="card-label fw-bold text-gray-900">Recomendados</span>
             <span className="text-muted mt-1 fw-semibold fs-7">personas cercanas a ti 80</span>
           </h3>
-          {/* Toolbar */}
           <div className="card-toolbar">
-            {/* Menu */}
             <button
               className="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
               data-kt-menu-trigger="click"
@@ -63,12 +118,9 @@ const SideberRFeed: React.FC = () => {
               </i>
             </button>
           </div>
-          {/* End Toolbar */}
         </div>
-        {/* End Header */}
-        {/* Body */}
         <div className="card-body pt-5">
-          {users.map(user => (
+          {filteredUsers.map(user => (
             <React.Fragment key={user._id}>
               <div className="d-flex flex-stack">
                 <div className="symbol symbol-40px me-5 position-relative">
@@ -86,15 +138,16 @@ const SideberRFeed: React.FC = () => {
                     </a>
                     <span className="text-muted fw-semibold d-block fs-7">{user.work}</span>
                   </div>
-                  <a href={`pages/user-profile/overview.html?id=${user._id}`} className="btn btn-sm btn-light fs-8 fw-bold">Enviar</a>
+                  <button onClick={() => sendFriendRequest(user._id)} className="btn btn-sm btn-light fs-8 fw-bold">Enviar</button>
                 </div>
               </div>
               <div className="separator separator-dashed my-4"></div>
             </React.Fragment>
           ))}
         </div>
-        {/* End Body */}
       </div>
+      <SolicitudesEnviadas />
+
     </div>
   );
 };
