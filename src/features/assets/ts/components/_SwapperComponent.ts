@@ -107,7 +107,7 @@ const defaultSwapperQueires: ISwapperQueries = {
 //     console.log('update called with parentSelector:', parentSelector, 'mode:', mode);
   
 //     if (!parentSelector) {
-//       console.error('Parent selector is empty');
+      console.error('Parent selector is empty');
 //       return;
 //     }
   
@@ -121,7 +121,7 @@ const defaultSwapperQueires: ISwapperQueries = {
   
 //     const elementId = this.element.id;
 //     if (!elementId) {
-//       console.error('Element ID is empty');
+      console.error('Element ID is empty');
 //       return;
 //     }
   
@@ -295,7 +295,7 @@ class SwapperComponent {
     // console.log('update called with parentSelector:', parentSelector, 'mode:', mode);
 
     if (!parentSelector) {
-      console.error('Parent selector is empty');
+      // console.error('Parent selector is empty');
       return;
     }
 
@@ -309,7 +309,7 @@ class SwapperComponent {
 
     const elementId = this.element.id;
     if (!elementId) {
-      console.error('Element ID is empty');
+      // console.error('Element ID is empty');
       return;
     }
 
