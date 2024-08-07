@@ -7,7 +7,7 @@ export let BASE_ENDPOINT = '';
 export const APP_ENVIRONMENT = 'local';
 
 if (APP_ENVIRONMENT === 'local') {
-  BASE_ENDPOINT = 'http://localhost:5000';
+  BASE_ENDPOINT = import.meta.env.VITE_APP_API_URL || 'https://api.serversocial.xyz';
 } else if (APP_ENVIRONMENT === 'development') {
   BASE_ENDPOINT = 'https://api.dev.dominio.com';
 } else if (APP_ENVIRONMENT === 'staging') {

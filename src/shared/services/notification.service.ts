@@ -2,7 +2,7 @@
 import axios from "./axios";
 
 class NotificationService {
-  private baseUrl = 'http://localhost:5000/api/v1';
+  private baseUrl = import.meta.env.VITE_APP_API_URL || 'https://api.serversocial.xyz/api/v1';
 
   async getUserNotifications() {
     const response = await axios.get(`${this.baseUrl}/notifications`, { withCredentials: true });

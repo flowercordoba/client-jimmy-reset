@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { store } from '../../store/store';
 import { addNotification } from '../../app/modules/notifications/reducers/notificationSlice';
 
-const BASE_ENDPOINT = 'http://localhost:5000';
+const BASE_ENDPOINT = import.meta.env.VITE_APP_API_URL || 'https://api.serversocial.xyz';
 
 class SocketService {
   socket: any;
