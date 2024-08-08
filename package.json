@@ -18,6 +18,7 @@
     "@vitejs/plugin-react": "^4.3.1",
     "animate.css": "4.1.1",
     "apexcharts": "3.35.0",
+    "autosize": "^6.0.1",
     "axios": "1.6.5",
     "bootstrap": "5.3.3",
     "bootstrap-icons": "^1.5.0",
@@ -53,6 +54,7 @@
     "yup": "^1.0.0"
   },
   "devDependencies": {
+    "@types/autosize": "^4.0.3",
     "@types/bootstrap": "5.1.10",
     "@types/chart.js": "2.9.37",
     "@types/jest": "29.5.2",
