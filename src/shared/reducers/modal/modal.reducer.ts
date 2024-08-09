@@ -1,6 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface ModalState {
+  type: string;
+  isOpen: boolean;
+  feeling: string;
+  image: string;
+  data: any;
+  feelingsIsOpen: boolean;
+  openFileDialog: boolean;
+  openVideoDialog: boolean;
+  gifModalIsOpen: boolean;
+  reactionsModalIsOpen: boolean;
+  commentsModalIsOpen: boolean;
+  deleteDialogIsOpen: boolean;
+}
+
+const initialState: ModalState = {
   type: '',
   isOpen: false,
   feeling: '',

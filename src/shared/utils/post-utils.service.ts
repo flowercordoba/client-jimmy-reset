@@ -5,7 +5,8 @@ import { closeModal } from '../reducers/modal/modal.reducer';
 import { clearPost, updatePostItem } from '../reducers/post/post.reducer';
 import { postService } from '../services/post.service';
 import { Utils } from './utils.service';
-import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
+import { ThunkDispatch, AnyAction, PayloadAction } from '@reduxjs/toolkit';
+import { RefObject } from 'react';
 
 export class PostUtils {
   static selectBackground(bgColor: any, postData: { bgColor: any; }, setTextAreaBackground: (arg0: any) => void, setPostData: (arg0: any) => void) {
@@ -24,7 +25,7 @@ export class PostUtils {
     dispatch(clearPost());
   }
 
-  static clearImage(postData: { gifUrl: string; image: string; video: string; post: any; }, post: any, inputRef: { current: { textContent: any; }; }, dispatch: (arg0: { payload: any; type: "post/updatePostItem"; }) => void, setSelectedPostImage: (arg0: null) => void, setPostImage: (arg0: string) => void, setPostData: (arg0: any) => void) {
+  static clearImage(postData: { gifUrl: string; image: string; video: string; post: any; }, post: any, inputRef: RefObject<HTMLDivElement> | null, dispatch: (action: PayloadAction<any, "post/updatePostItem">) => void, setSelectedPostImage: (arg0: null) => void, setPostImage: (arg0: string) => void, setPostData: (arg0: any) => void) {
     postData.gifUrl = '';
     postData.image = '';
     postData.video = '';
@@ -45,7 +46,7 @@ export class PostUtils {
     );
   }
 
-  static postInputData(imageInputRef: { current: { textContent: any; }; }, postData: { post: any; }, post: any, setPostData: (arg0: any) => void) {
+  static postInputData(imageInputRef: RefObject<HTMLDivElement> | null, postData: { post: any; }, post: any, setPostData: (arg0: any) => void) {
     setTimeout(() => {
       if (imageInputRef?.current) {
         imageInputRef.current.textContent = !post ? postData?.post : post;
@@ -64,7 +65,7 @@ export class PostUtils {
     Utils.dispatchNotification(message, type, dispatch);
   }
 
-  static async sendPostWithFileRequest(type: string, postData: { post: any; }, imageInputRef: { current: { textContent: any; }; }, setApiResponse: (arg0: string) => void, setLoading: (arg0: boolean) => void, dispatch: any) {
+  static async sendPostWithFileRequest(type: string, postData: { post: any; }, imageInputRef: RefObject<HTMLDivElement> | null, setApiResponse: (arg0: string) => void, setLoading: (arg0: boolean) => void, dispatch: any) {
     try {
       if (imageInputRef?.current) {
         imageInputRef.current.textContent = postData.post;
@@ -121,16 +122,16 @@ export class PostUtils {
     return isPrivate || isPublic || isFollower;
   }
 
-  // static positionCursor(elementId: string) {
-  //   const element = document.getElementById(`${elementId}`);
-  //   const selection = window.getSelection();
-  //   const range = document.createRange();
-  //   selection.removeAllRanges();
-  //   range.selectNodeContents(element);
-  //   range.collapse(false);
-  //   selection.addRange(range);
-  //   element.focus();
-  // }
+  static positionCursor(elementId: string) {
+    const element = document.getElementById(`${elementId}`);
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection?.removeAllRanges();
+    if (element) range.selectNodeContents(element);
+    range.collapse(false);
+    selection?.addRange(range);
+    element?.focus();
+  }
 
   static socketIOPost(posts: any[] | List<unknown> | null | undefined, setPosts: (arg0: any) => void) {
     posts = cloneDeep(posts);
