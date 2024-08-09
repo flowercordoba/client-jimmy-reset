@@ -1,0 +1,20 @@
+.modal-box-bg-colors {
+    padding: 5px 15px;
+    height: 45px;
+  
+    ul {
+      list-style: none;
+  
+      li {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        margin-right: 4px;
+      }
+  
+      .whiteColorBorder {
+        border: 1px solid var(--white-8);
+      }
+    }
+  }

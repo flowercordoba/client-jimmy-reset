@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, RefObject, SyntheticEvent, useEffect, useRef, useState } from "react";
+import React, { FormEvent, KeyboardEvent, RefObject, SyntheticEvent, useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../modules/auth";
 import AutoResizeTextArea from "../../../../features/components/AutoResizeTextArea";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,7 +6,9 @@ import { RootState } from "../../../../store/store";
 import { PostUtils } from "../../../../shared/utils/post-utils.service";
 import { readAsBase64 } from "../../../../shared/utils/image-utils.service";
 import { postService } from "../../../../shared/services/post.service";
-import { closeModal } from "../../../../shared/reducers/modal/modal.reducer";
+import { closeModal, openModal } from "../../../../shared/reducers/modal/modal.reducer";
+import { bgColors } from "../../../../shared/utils/static.data";
+import './PublishCard.scss'
 
 const PublishCard: React.FC = () => {
   const { currentUser } = useAuth();
@@ -43,12 +45,14 @@ const PublishCard: React.FC = () => {
     PostUtils.selectBackground(bgColor, postData, setTextAreaBackground, setPostData);
   };
 
-  const postInputEditable = (event: SyntheticEvent<HTMLDivElement>, textContent: string) => {
-    const currentTextLength = event.currentTarget.textContent?.length || 0;
+  const postInputEditable = (event: FormEvent<HTMLTextAreaElement>) => {
+    const text = event.currentTarget.value;
+    if (!text || text.length == 0) return
+    const currentTextLength = text.length || 0;
     const counter = maxNumberOfCharacters - currentTextLength;
     if (counterRef.current) counterRef.current.textContent = `${counter}/100`;
     setDisable(currentTextLength <= 0 && !postImage);
-    PostUtils.postInputEditable(textContent, postData, setPostData);
+    PostUtils.postInputEditable(text, postData, setPostData);
   };
 
   const closePostModal = () => {
@@ -120,7 +124,7 @@ const PublishCard: React.FC = () => {
           setApiResponse('success');
           setLoading(false);
           setHasVideo(false);
-          PostUtils.closePostModal(dispatch);
+          // PostUtils.closePostModal(dispatch);
         }
       }
     } catch (error) {
@@ -172,23 +176,18 @@ const PublishCard: React.FC = () => {
         </span>
       </div>
 
-      <div className="card-body pt-2 pb-0">
+      <div className="card-body pt-2 pb-0" onClick={() => dispatch(openModal({ type: 'add', data: 'test'}))}>
         <AutoResizeTextArea
           className="form-control bg-transparent border-0 px-0"
           placeholder="Escribe algo..."
           rows={1}
+          onInput={postInputEditable}
         />
       </div>
 
       <div className="card-footer d-flex justify-content-end pt-0">
-        <a className="btn btn-sm btn-primary" id="kt_social_feeds_post_btn">
-          <span className="btn btn-sm ">Publicar</span>
 
-          <span className="indicator-progress">
-            Please wait...
-            <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
-          </span>
-        </a>
+
       </div>
     </div>
   );
